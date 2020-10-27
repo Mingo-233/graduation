@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" v-title data-title="问卷 ">
       <!-- 答题主题区域 -->
       <div class="main">
         <el-card class="box-card">
@@ -119,7 +119,7 @@
             <el-checkbox label="没有遇到学习问题" name="type"></el-checkbox>
           </el-checkbox-group>
         </el-form-item>
-        <div>三、教育培养</div>
+        <div>四、教育培养</div>
         <el-divider></el-divider>
         <div v-for="item1 in arrQueList3" :key="item1.index">
           <div class="Firstlevel" :id="'a'+item1.index">{{item1.title}}</div>
@@ -171,7 +171,7 @@
             <el-checkbox label="其他" name="type"></el-checkbox>
           </el-checkbox-group>
         </el-form-item>
-        <div>四、德育与能力</div>
+        <div>五、德育与能力</div>
         <el-divider></el-divider>
         <div v-for="item1 in arrQueList4" :key="item1.index">
           <div class="Firstlevel" :id="'a'+item1.index">{{item1.title}}</div>
@@ -218,7 +218,7 @@
             <el-checkbox label="没有任何提升" name="type"></el-checkbox>
           </el-checkbox-group>
         </el-form-item>
-        <div>五、在校体验</div>
+        <div>六、在校体验</div>
         <el-divider></el-divider>
         <div v-for="item1 in arrQueList5" :key="item1.index">
           <div class="Firstlevel" :id="'a'+item1.index">{{item1.title}}</div>
