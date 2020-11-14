@@ -5,25 +5,9 @@
 <script>
 export default {
   data() {
-    return {
-      ruleForm: {
-        sex: "",
-        nations: "",
-        major: "",
-      },
-      rules: {
-        sex: [
-          { required: true, message: "您还有未选择的选项", trigger: "change" },
-        ],
-        nation: [
-          { required: true, message: "您还有未选择的选项", trigger: "change" },
-        ],
-        major: [
-          { required: true, message: "您还有未选择的选项", trigger: "change" },
-        ],
-      },
-    };
+    return {};
   },
+  mounted() {},
   methods: {
     submitForm() {
       console.log(this.Form);

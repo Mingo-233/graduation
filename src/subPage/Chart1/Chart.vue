@@ -191,6 +191,7 @@ export default {
     async getAnalysisData1() {
       const { data: res1 } = await this.$axios.get("analysis/analysis1");
       this.option.series[0].data[0].value = res1;
+      console.log("123");
     },
     // Q7 条形
     async getAnalysisData2() {
@@ -208,7 +209,8 @@ export default {
   },
   // mounted 此时页面上的元素，已经被渲染完毕
   mounted: async function () {
-    await this.getAnalysisData1();
+    const res = await this.getAnalysisData1();
+    console.log(res);
     await this.getAnalysisData2();
     await this.getAnalysisData3();
     // // 3.基于准备好的dom，初始化echarts实例

@@ -97,7 +97,7 @@ export default {
       this.option2.visualMap.max = res3.length;
       this.option2.series[0].data = res3;
     },
-  },
+  },  
   // mounted 此时页面上的元素，已经被渲染完毕
   mounted: async function () {
     await this.getAnalysisData12();

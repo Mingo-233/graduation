@@ -5,6 +5,7 @@
       <el-breadcrumb-item>基础指数</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="title">数据样本的基础信息</div>
+    <h1>{{ a }}</h1>
     <el-table :data="tableData" stripe border style="width: 100%">
       <el-table-column type="index" label="序号"></el-table-column>
       <el-table-column prop="sex" label="性别" width="180"> </el-table-column>
@@ -24,6 +25,7 @@ export default {
   data() {
     return {
       tableData: [],
+      a: {},
     };
   },
   methods: {
@@ -34,6 +36,8 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$route.params);
+    this.a = this.$route.params;
     this.getBasicsData();
   },
 };

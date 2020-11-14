@@ -74,10 +74,9 @@ export default {
       menuList: [],
       icons: [
         "el-icon-user-solid",
-        "el-icon-thumb",
-        "el-icon-s-goods",
-        "el-icon-truck",
-        "el-icon-news",
+        "el-icon-pie-chart",
+        "el-icon-data-analysis",
+        "el-icon-notebook-1",
       ],
       isCollapse: false,
       activePath: "",
