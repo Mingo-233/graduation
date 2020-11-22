@@ -9,7 +9,7 @@ import Chart2 from '../subPage/Chart2/Chart.vue'
 import Question from '../subPage/Question.vue'
 import demo from '../views/demo.vue'
 import { Que1, Que2, Que3, Que4, Que5 } from '../views/Que'
-import conclusionPerson from '../views/conclusionPerson'
+import conclusionPerson from '../views/conclusionPerson/index.vue'
 
 Vue.use(VueRouter)
 const routes = [

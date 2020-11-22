@@ -149,6 +149,19 @@
               >提交</el-button
             >
             <el-button el-button @click="resetForm">重置</el-button>
+            <el-button type="primary" @click="openDialog">打开</el-button>
+            <el-dialog
+              title="提示"
+              :visible.sync="dialogVisible"
+              width="30%"
+              :before-close="closeDialog"
+            >
+              <score-dialog
+                v-if="dialogVisible"
+                @dialogClose="closeDialog"
+                :id="this.Form.StudentID"
+              ></score-dialog>
+            </el-dialog>
           </div>
         </el-form>
       </el-card>
@@ -200,6 +213,7 @@
   </div>
 </template>
 <script>
+import ScoreDialog from "./component/scoreDialog.vue";
 export default {
   name: "Que1",
   data() {
@@ -243,6 +257,7 @@ export default {
           { required: true, message: "您还有未选择的选项", trigger: "change" },
         ],
       },
+      dialogVisible: false,
       // 进度条
       percentage: 0,
       customColor: "#409eff",
@@ -356,6 +371,13 @@ export default {
         }
       });
     },
+    openDialog() {
+      console.log(this.Form);
+      this.dialogVisible = true;
+    },
+    closeDialog() {
+      this.dialogVisible = false;
+    },
     // 重置表单
     resetForm() {
       this.$refs.ruleForm.resetFields();
@@ -464,7 +486,9 @@ export default {
       }
     },
   },
-  watch: {},
+  components: {
+    ScoreDialog,
+  },
 };
 </script>
 
