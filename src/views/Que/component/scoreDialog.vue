@@ -25,7 +25,11 @@ export default {
   props: {
     id: {
       type: String,
-      dafault: "",
+      dafault: () => "",
+    },
+    type: {
+      type: Number,
+      dafault: () => 0,
     },
   },
   data() {
@@ -41,7 +45,9 @@ export default {
       this.$router.push("question");
     },
     async getScore() {
-      const { data } = await this.$axios.get(`person/personCheck1/${this.id}`);
+      const { data } = await this.$axios.get(
+        `person/personCheck${this.type}/${this.id}`
+      );
       this.score = data.score;
       this.total = data.total;
       console.log(data);
@@ -49,7 +55,7 @@ export default {
   },
   async mounted() {
     await this.getScore();
-    console.log(this.ratio);
+    console.log(this.type);
   },
   computed: {
     ratio: function () {

@@ -137,7 +137,7 @@
               @change="handleSelect('Q31', 31)"
             >
               <el-checkbox
-                label="劳动教育类的通识课程"
+                label="社会活动教育类的通识课程"
                 name="type"
               ></el-checkbox>
               <el-checkbox
@@ -149,7 +149,7 @@
               <el-checkbox label="校园清洁" name="type"></el-checkbox>
               <el-checkbox label="社会公益活动" name="type"></el-checkbox>
               <el-checkbox
-                label="没有参加任何劳动教育"
+                label="没有参加任何社会活动教育"
                 name="type"
               ></el-checkbox>
             </el-checkbox-group>
@@ -240,15 +240,19 @@
               <el-checkbox label="以上均没有" name="type"></el-checkbox>
             </el-checkbox-group>
           </el-form-item>
-          <el-form-item label="34一周在实验室多长时间" prop="Q34" id="a34">
+          <el-form-item
+            label="34参与比赛时一周在实验室多长时间"
+            prop="Q34"
+            id="a34"
+          >
             <el-radio-group
               v-model="Form.Q34"
               @change="handleSelect('Q34', 34)"
             >
-              <el-radio label="8小时以下" value="8小时以下"></el-radio>
-              <el-radio label="8-16小时" value="8-16小时"></el-radio>
-              <el-radio label="16-24小时" value="16-24小时"></el-radio>
-              <el-radio label="24小时以上" value="24小时以上"></el-radio>
+              <el-radio label="1" value="1">8小时以下</el-radio>
+              <el-radio label="2" value="2">8-16小时</el-radio>
+              <el-radio label="3" value="3">16-24小时</el-radio>
+              <el-radio label="4" value="4">24小时以上</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="35获得过什么级别奖项" prop="Q35" id="a35">
@@ -256,16 +260,30 @@
               v-model="Form.Q35"
               @change="handleSelect('Q35', 35)"
             >
-              <el-radio label="无" value="无"></el-radio>
-              <el-radio label="市级奖项" value="市级奖项"></el-radio>
-              <el-radio label="省级奖项" value="省级奖项"></el-radio>
-              <el-radio label="国家级奖项" value="国家级奖项"></el-radio>
+              <el-radio label="1" value="1">无</el-radio>
+              <el-radio label="2" value="2">市级奖项</el-radio>
+              <el-radio label="3" value="3">省级奖项</el-radio>
+              <el-radio label="4" value="4">国家级奖项</el-radio>
             </el-radio-group>
           </el-form-item>
           <div class="btn">
             <el-button el-button type="primary" @click="save" class="submit"
               >提交</el-button
             >
+            <el-button type="primary" @click="openDialog">打开</el-button>
+            <el-dialog
+              title="提示"
+              :visible.sync="dialogVisible"
+              width="30%"
+              :before-close="closeDialog"
+            >
+              <score-dialog
+                v-if="dialogVisible"
+                @dialogClose="closeDialog"
+                :id="this.Form.StudentID"
+                :type="4"
+              ></score-dialog>
+            </el-dialog>
           </div>
         </el-form>
       </el-card>
@@ -317,6 +335,7 @@
   </div>
 </template>
 <script>
+import ScoreDialog from "./component/scoreDialog.vue";
 export default {
   name: "Que4",
   data() {
@@ -363,6 +382,7 @@ export default {
           { required: true, message: "您还有未选择的选项", trigger: "change" },
         ],
       },
+      dialogVisible: false,
       // 进度条
       percentage: 0,
       customColor: "#409eff",
@@ -447,21 +467,16 @@ export default {
         );
         console.log(res);
         if (!res.data.errMessage) {
-          this.$alert(
-            "感谢您的参与。您可以继续参加其他模块测试，全部测试完成之后将解锁个人能力指标图。",
-            "提示",
-            {
-              confirmButtonText: "确定",
-              callback: (action) => {
-                this.$message({
-                  type: "success",
-                  message: "添加成功",
-                });
-                console.log(action);
-                this.$router.push("question");
-              },
-            }
-          );
+          this.$alert("提交成功，您可以查看本次测试得分情况。", "提示", {
+            confirmButtonText: "确定",
+            callback: (action) => {
+              this.$message({
+                type: "success",
+                message: "添加成功",
+              });
+              this.openDialog();
+            },
+          });
         } else {
           this.$message({
             type: "error",
@@ -470,7 +485,13 @@ export default {
         }
       });
     },
-
+    openDialog() {
+      console.log(this.Form);
+      this.dialogVisible = true;
+    },
+    closeDialog() {
+      this.dialogVisible = false;
+    },
     //恢复个人信息数据
     recovery() {
       if (!this.btnFlag) {
@@ -572,7 +593,9 @@ export default {
       }
     },
   },
-  watch: {},
+  components: {
+    ScoreDialog,
+  },
 };
 </script>
 

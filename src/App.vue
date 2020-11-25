@@ -7,6 +7,6 @@
 
 <style>
 #nprogress .bar {
-  background: white !important;
+  background: yellowgreen !important;
 }
 </style>

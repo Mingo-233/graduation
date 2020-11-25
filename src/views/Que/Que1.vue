@@ -160,6 +160,7 @@
                 v-if="dialogVisible"
                 @dialogClose="closeDialog"
                 :id="this.Form.StudentID"
+                :type="1"
               ></score-dialog>
             </el-dialog>
           </div>
@@ -348,21 +349,16 @@ export default {
         );
         console.log(res);
         if (!res.data.errMessage) {
-          this.$alert(
-            "感谢您的参与。您可以继续参加其他模块测试，全部测试完成之后将解锁个人能力指标图。",
-            "提示",
-            {
-              confirmButtonText: "确定",
-              callback: (action) => {
-                this.$message({
-                  type: "success",
-                  message: "添加成功",
-                });
-                console.log(action);
-                this.$router.push("question");
-              },
-            }
-          );
+          this.$alert("提交成功，您可以查看本次测试得分情况。", "提示", {
+            confirmButtonText: "确定",
+            callback: (action) => {
+              this.$message({
+                type: "success",
+                message: "添加成功",
+              });
+              this.openDialog();
+            },
+          });
         } else {
           this.$message({
             type: "error",

@@ -171,6 +171,20 @@
             <el-button el-button type="primary" @click="save" class="submit"
               >提交</el-button
             >
+            <el-button type="primary" @click="openDialog">打开</el-button>
+            <el-dialog
+              title="提示"
+              :visible.sync="dialogVisible"
+              width="30%"
+              :before-close="closeDialog"
+            >
+              <score-dialog
+                v-if="dialogVisible"
+                @dialogClose="closeDialog"
+                :id="this.Form.StudentID"
+                :type="2"
+              ></score-dialog>
+            </el-dialog>
           </div>
         </el-form>
       </el-card>
@@ -222,6 +236,7 @@
   </div>
 </template>
 <script>
+import ScoreDialog from "./component/scoreDialog.vue";
 export default {
   name: "Que2",
   data() {
@@ -270,6 +285,7 @@ export default {
           { required: true, message: "您还有未选择的选项", trigger: "change" },
         ],
       },
+      dialogVisible: false,
       // 进度条
       percentage: 0,
       customColor: "#409eff",
@@ -354,21 +370,16 @@ export default {
         );
         console.log(res);
         if (!res.data.errMessage) {
-          this.$alert(
-            "感谢您的参与。您可以继续参加其他模块测试，全部测试完成之后将解锁个人能力指标图。",
-            "提示",
-            {
-              confirmButtonText: "确定",
-              callback: (action) => {
-                this.$message({
-                  type: "success",
-                  message: "添加成功",
-                });
-                console.log(action);
-                this.$router.push("question");
-              },
-            }
-          );
+          this.$alert("提交成功，您可以查看本次测试得分情况。", "提示", {
+            confirmButtonText: "确定",
+            callback: (action) => {
+              this.$message({
+                type: "success",
+                message: "添加成功",
+              });
+              this.openDialog();
+            },
+          });
         } else {
           this.$message({
             type: "error",
@@ -376,6 +387,13 @@ export default {
           });
         }
       });
+    },
+    openDialog() {
+      console.log(this.Form);
+      this.dialogVisible = true;
+    },
+    closeDialog() {
+      this.dialogVisible = false;
     },
     //恢复个人信息数据
     recovery() {
@@ -414,9 +432,8 @@ export default {
     handleSelect(name, i) {
       // 将数据值转化为索引值
       i = i - 1;
-      //每次点击增加的百分比
+      // 每次点击增加的百分比
       let num = this.singlePercentage;
-
       // 如果set数组中不存在这个问题类名
       if (!this.queSetArr.has(name)) {
         //js计算小数运算时存在偏差
@@ -477,7 +494,9 @@ export default {
       }
     },
   },
-  watch: {},
+  components: {
+    ScoreDialog,
+  },
 };
 </script>
 

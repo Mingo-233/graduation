@@ -25,7 +25,7 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$Qs = Qs
 //配置滚动条
-NProgress.configure({ showSpinner: false, ease: 'ease', speed: 3000 })
+NProgress.configure({ showSpinner: false, ease: 'ease', speed: 800 })
 // 挂载ElementUI
 Vue.use(ElementUI)
 Vue.use(htmlToPdf)
