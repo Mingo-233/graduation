@@ -11,9 +11,6 @@
     <el-button @click="moudle3Btn">教育培养模块</el-button>
     <el-button @click="moudle4Btn">德育与能力模块</el-button>
     <el-button @click="moudle5Btn">在校体验模块</el-button>
-    <div>
-      <el-button @click="check">查看测试结果</el-button>
-    </div>
   </div>
 </template>
 <script>
@@ -38,15 +35,9 @@ export default {
     moudle5Btn() {
       this.$router.push({ name: "que5" });
     },
-    async check() {
-      const id = 2017010888;
-      // const data = await this.$axios.get(`person/personCheck/${id}`);
-      this.$router.push({ path: "/conclusionPerson" });
-      window.sessionStorage.setItem("activePath", "/conclusionPerson");
-    },
   },
 };
 </script>
 
-<style scoped lang="less">
+<style  lang="less">
 </style>

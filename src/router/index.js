@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Welcome from '../views/Welcome.vue'
+import Welcome from '../views/dashboard/Welcome.vue'
 import Basics from '../views/Basics.vue'
 import Conclusion from '../views/Conclusion.vue'
 import Chart1 from '../views/chartPage/Chart1/Chart.vue'
 import Chart2 from '../views/chartPage/Chart2/Chart.vue'
+import Chart3 from '../views/chartPage/Chart3/Chart.vue'
+import Chart4 from '../views/chartPage/Chart4/Chart.vue'
 import Question from '../views/Question.vue'
 import demo from '../views/demo.vue'
 import { Que1, Que2, Que3, Que4, Que5 } from '../views/Que'
@@ -22,6 +24,8 @@ const routes = [
       { name: 'basics', path: '/basics', component: Basics },
       { path: '/chart1', component: Chart1 },
       { path: '/chart2', component: Chart2 },
+      { path: '/chart3', component: Chart3 },
+      { path: '/chart4', component: Chart4 },
       { path: '/conclusion', component: Conclusion },
       { path: '/conclusionPerson', component: conclusionPerson },
       { name: 'question', path: '/question', component: Question },

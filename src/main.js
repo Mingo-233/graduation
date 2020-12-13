@@ -10,6 +10,7 @@ import 'nprogress/nprogress.css'
 import axios from 'axios'
 import Qs from 'qs'
 import htmlToPdf from '@/utils/htmlToPdf'
+import '@/icons'
 //配置请求的根路径
 axios.defaults.baseURL = 'http://localhost:3000/api/'
 router.beforeEach((to, from, next) => {

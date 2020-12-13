@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div class="basics">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>基础指数</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="title">数据样本的基础信息</div>
-    <h1>{{ a }}</h1>
     <el-table :data="tableData" stripe border style="width: 100%">
       <el-table-column type="index" label="序号"></el-table-column>
       <el-table-column prop="sex" label="性别" width="180"> </el-table-column>
@@ -17,15 +16,19 @@
       <el-table-column prop="profession" label="父母职业阶级">
       </el-table-column>
     </el-table>
+    <svg-icon icon-class="sampleData"></svg-icon>
+    <svg-icon icon-class="major"></svg-icon>
+    <!-- :width="50 + 'px'"
+      :height="50 + 'px'" -->
   </div>
 </template>
 
 <script>
+// import "./icon";
 export default {
   data() {
     return {
       tableData: [],
-      a: {},
     };
   },
   methods: {
@@ -36,20 +39,25 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.params);
-    this.a = this.$route.params;
     this.getBasicsData();
   },
 };
 </script>
-<style lang="less" scoped>
-.title {
-  width: 100%;
-  height: 50px;
-  background: #ffffff;
-  line-height: 50px;
-  font-size: 20px;
-  margin: 10px 0;
-  text-align: center;
+<style lang="less" >
+.basics {
+  font-size: 16px;
+  .svg-icon {
+    font-size: 3em;
+    color: brown;
+  }
+  .title {
+    width: 100%;
+    height: 50px;
+    background: #ffffff;
+    line-height: 50px;
+    font-size: 20px;
+    margin: 10px 0;
+    text-align: center;
+  }
 }
 </style>

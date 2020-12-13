@@ -214,6 +214,7 @@
   </div>
 </template>
 <script>
+import { animate } from "@/utils/index";
 import ScoreDialog from "./component/scoreDialog.vue";
 export default {
   name: "Que1",
@@ -454,24 +455,8 @@ export default {
     },
     // 返回顶部
     backTophandle() {
-      this.animate(window, 0);
+      animate(window, 0);
       // window.scroll(0, 0)
-    },
-    // 滚动动画
-    animate(obj, target, callback) {
-      clearInterval(obj.timer);
-      obj.timer = setInterval(function () {
-        // 这个步长值改为一个慢慢变小的值  步长公式：(目标值 - 现在的位置) / 10
-        var step = (target - window.pageYOffset) / 10;
-        // 把步长值改为整数 不要出现小数的问题
-        step = step > 0 ? Math.ceil(step) : Math.floor(step);
-        if (window.pageYOffset === target) {
-          clearInterval(obj.timer);
-          // 短路运算-回调函数
-          callback && callback();
-        }
-        window.scroll(0, window.pageYOffset + step);
-      }, 15);
     },
     checkRecord() {
       //判断是否存在

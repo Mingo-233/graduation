@@ -1,5 +1,5 @@
 <template>
-  <div v-title data-title="专业认知模块" class="chart1Mode">
+  <div v-title data-title="专业认知模块" class="chart1Mode" id="pdfDom">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>图表数据</el-breadcrumb-item>
@@ -25,21 +25,41 @@
         </svg>
         <span>数据分析报告</span>
       </div>
-      <h3>1专业认知</h3>
-      <div>
-        该雷达图分析显示了各专业学生对自身专业认知程度情况，可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该轴所对应的专业相关性认知程度越好。最高分值为3
-        <br />
-        <span>注：平均指数为该院校下所有专业的平均分数</span>
+      <div class="content">
+        <h3>1专业认知</h3>
+        <div>
+          该雷达图分析了各专业学生对自身专业认知程度情况，可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该轴所对应的专业相关性认知程度越好。最高分值为3。
+        </div>
+        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
       </div>
       <div class="chart">
         <chart-show :id="'main'" :data="option" class="radar"></chart-show>
       </div>
+      <div class="content">
+        <h3>2专业途径</h3>
+        <div>
+          该饼图分析了当前学院下学生了解专业途径来源的占比，其中饼图中颜色越鲜艳的表面占比越大，通过左侧控制条可以筛选显示。
+        </div>
+      </div>
       <div class="chart">
         <chart-show :id="'main2'" :data="option2" class="pie"></chart-show>
+      </div>
+      <div class="content">
+        <h3>3专业学情</h3>
+        <div>
+          该条形图分析了各专业学生在本专业的学习情况，可以通过选择不同专业来进行横向比较，条形图中某一轴长度越长，说明该轴所对应的专业学情反应情况越好。最高分值为100。
+        </div>
+        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
       </div>
       <div class="chart">
         <chart-show :id="'main3'" :data="option3" class="bar"></chart-show>
       </div>
+    </div>
+    <div class="footer">
+      <el-button type="primary round plain">回到顶部</el-button>
+      <el-button type="primary round plain" @click="getPdf()"
+        >保存本地</el-button
+      >
     </div>
   </div>
 </template>
@@ -51,12 +71,13 @@ const _this = this;
 export default {
   data() {
     return {
+      htmlTitle: "专业认知模块",
       option: {
         title: {
           text: "专业认知",
           subtext: "数据来自本网站系统数据采集",
           top: 0,
-          left: 10,
+          left: 0,
         },
         tooltip: {
           trigger: "axis",
@@ -237,7 +258,7 @@ export default {
           {
             name: "平均指数",
             type: "bar",
-            data: [3, 9, 4, 7, 4, 3, 10],
+            data: [30, 9, 4, 7, 4, 3, 10],
           },
           {
             name: "物联网工程",
@@ -271,10 +292,10 @@ export default {
     // Q10 条形
     async getAnalysisData2() {
       const { data: res2 } = await this.$axios.get("analysis/analysis2");
-      this.option3.series[0].data.value = res2;
-      this.option3.series[0].data.value = res2;
-      this.option3.series[0].data.value = res2;
-      this.option3.series[0].data.value = res2;
+      this.option3.series[0].data = res2.sumQ10;
+      this.option3.series[1].data = res2.sumQ10Jxdz;
+      this.option3.series[2].data = res2.sumQ10Tx;
+      this.option3.series[3].data = res2.sumQ10Wlw;
       console.log(res2);
     },
     // Q11 饼图
@@ -308,13 +329,28 @@ export default {
 
 <style lang="less" >
 .chart1Mode {
+  padding: 10px;
   .body {
+    overflow: hidden;
     .topic {
       text-align: center;
       margin-bottom: 20px;
       > span {
         font-size: 24px;
         vertical-align: bottom;
+      }
+    }
+    .content {
+      text-indent: 2em;
+      padding-left: 20%;
+      padding-right: 20%;
+      margin-bottom: 15px;
+      overflow: hidden;
+      .tips {
+        color: rgb(163, 164, 165);
+        font-size: 14px;
+        padding-bottom: 10px;
+        padding-left: 5px;
       }
     }
     .chart {
@@ -324,18 +360,26 @@ export default {
       margin: 20px 0;
       .radar {
         height: 500px;
-        width: 40%;
-        box-sizing: border-box;
+        width: 50%;
+        // box-sizing: border-box;
+        border: black 1px solid;
       }
       .pie {
         height: 500px;
-        width: 40%;
+        width: 50%;
       }
       .bar {
         height: 350px;
         width: 60%;
       }
     }
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
   }
 }
 </style>

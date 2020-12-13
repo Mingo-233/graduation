@@ -1,12 +1,86 @@
 <template>
-  <div v-title data-title="学习投入模块">
+  <div v-title data-title="学习投入模块" class="chart1Mode" id="pdfDom">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>图表数据</el-breadcrumb-item>
       <el-breadcrumb-item>学习投入模块</el-breadcrumb-item>
     </el-breadcrumb>
-    <div class="row">
-      <chart-show :id="'main'" :data="option" class="radar"></chart-show>
+    <div class="body">
+      <div class="topic">
+        <svg
+          t="1606024523939"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="2443"
+          width="32"
+          height="32"
+        >
+          <path
+            d="M494.1 221.6l18.2 91.4-40.9-77.5c-31.6 19.9-64 42.2-96.9 67.3l26.8 134.4-58-109.9c-25.6 20.7-51.4 43.2-77.3 67.4L295.6 543l-61.8-117.1c-26.6 26.4-53.2 54.7-79.8 85.2l35.9 180-72.3-136.9c-17.5 21.4-34.9 43.6-52.2 66.9-13.3 49.3 79.5 232.6 79.5 232.6l-44.5 90.5 96.5-67.8s205.9-7 234.3-31.7c10.5-26.5 21.5-52.5 33.1-78.1l-122.5 1.8L486.1 720c17.4-35.8 35.8-70.6 54.9-104.3l-135.8 1.9 167.5-56c19.6-32.4 39.8-63.7 60.1-93.7L511 469.6l157.4-52.7c24.5-34.1 49-66.4 73.3-96.7l-90.5 1.3 123-41.1c71-85.3 137.1-152.5 185.8-197.7-3.7-6.2-207.3-15.7-465.9 138.9zM210.7 851c-22.9-1.7-40.5 5.7-38.8-22.5 239.7-470.6 763.6-746 763.6-746S339.4 498.5 210.7 851z"
+            fill="#040000"
+            p-id="2444"
+          ></path>
+        </svg>
+        <span>数据分析报告</span>
+      </div>
+      <div class="content">
+        <h3>1学习现状描述</h3>
+        <div>
+          该饼图分析了当前学院下学生最近的学习状况描述，通过学习获得的满足感,学习兴趣,求知欲和课堂与老师的互动等这些角度,符合为同意,不符合为不同意,概况描述了学生最近的学习状况。
+        </div>
+        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+      </div>
+      <div class="chart">
+        <chart-show :id="'main'" :data="option" class="chartPie"></chart-show>
+      </div>
+      <div class="content">
+        <h3>2课前课后学习情况</h3>
+        <div>
+          该极坐标系柱状图分析了当前学院下各专业学生在课前、课上、课后的学习情况，该轴指数越高,说明该轴对应的学习情况越好。所有专业学生的数据堆叠显示,能够直观显示整个学院学生情况,也可以选择不同专业的数据,进行单独分析。
+        </div>
+      </div>
+      <div class="chart">
+        <chart-show
+          :id="'main2'"
+          :data="option2"
+          class="chartPolar"
+        ></chart-show>
+      </div>
+      <div class="content">
+        <h3>3课外安排</h3>
+        <div>
+          该条形图分析了学院下学生在课外的学习时间安排情况，条形图中某一轴长度越长，说明该轴所对应课外学习安排学生参与的越多的。
+        </div>
+        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+      </div>
+      <div class="chart">
+        <chart-show :id="'main3'" :data="option3" class="bar"></chart-show>
+      </div>
+      <div class="content">
+        <h3>4学习问题</h3>
+        <div>
+          该条形图分析了学院下学生在学习方面遇到主要问题，条形图中某一轴长度越长，说明该轴所对应的问题学生遇到的越多，学校方面需要重视这一块内容的改善。
+        </div>
+        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+      </div>
+      <div class="chart">
+        <chart-show
+          :id="'main4'"
+          :data="option4"
+          class="barMultiple"
+        ></chart-show>
+      </div>
+    </div>
+
+    <div class="footer">
+      <el-button type="primary round plain" @click="backTop()"
+        >回到顶部
+      </el-button>
+      <el-button type="primary round plain" @click="getPdf()"
+        >保存本地</el-button
+      >
     </div>
   </div>
 </template>
@@ -14,95 +88,268 @@
 <script>
 var echarts = require("echarts");
 import chartShow from "./component/chartShow";
+import { animate } from "@/utils/index";
 const _this = this;
 export default {
   data() {
+    var data = [
+      {
+        name: "同意",
+        value: 70,
+      },
+      {
+        name: "不同意",
+        value: 68,
+      },
+    ];
     return {
+      htmlTitle: "学习投入模块",
+
       option: {
-        title: {
-          text: "课后学习情况",
-        },
-        tooltip: {
-          trigger: "axis",
-        },
-        legend: {
-          left: "center",
-          data: ["平均指数"],
-        },
-        radar: [
+        title: [
           {
-            indicator: [
-              { name: "制定短期学习计划", max: 3, color: "rgb(194,53,49)" },
-              {
-                name: "根据情况分配学习时间和精力",
-                max: 3,
-                color: "rgb(194,53,49)",
-              },
-              {
-                name: "搜集、阅读课程相关的参考资料",
-                max: 3,
-                color: "rgb(194,53,49)",
-              },
-              {
-                name: "课后复习笔记及总结相关知识",
-                max: 3,
-                color: "rgb(194,53,49)",
-              },
-              {
-                name: "注意观察、借鉴他人的学习方法和经验",
-                max: 3,
-                color: "rgb(194,53,49)",
-              },
-            ],
-            center: ["50%", "50%"],
-            radius: 150,
+            top: "10%",
+            right: "10%",
+            text: "学习现状",
+          },
+          {
+            subtext: "学习能够让我获得强烈的满足感",
+            left: "16.67%",
+            top: "75%",
+            textAlign: "center",
+          },
+          {
+            subtext: "我对所学的内容充满好奇，具有充足的学习兴趣",
+            left: "50%",
+            top: "75%",
+            textAlign: "center",
+          },
+          {
+            subtext: "我上课时经常有很多问题想要向老师提问",
+            left: "83.33%",
+            top: "75%",
+            textAlign: "center",
           },
         ],
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)",
+        },
         series: [
           {
-            type: "radar",
-            tooltip: {
-              trigger: "item",
+            name: "满足感",
+            type: "pie",
+            radius: "50%",
+            center: ["50%", "50%"],
+            data: data,
+            //动画
+            animation: true,
+            label: {
+              position: "outer",
+              alignTo: "none",
+              bleedMargin: 5,
             },
-            areaStyle: {
-              color: "rgb(194,53,49)",
+            left: 0,
+            right: "66.6667%",
+            top: 0,
+            bottom: 0,
+          },
+          {
+            name: "学习兴趣",
+            type: "pie",
+            radius: "50%",
+            center: ["50%", "50%"],
+            data: data,
+            animation: true,
+            label: {
+              position: "outer",
+              alignTo: "labelLine",
+              bleedMargin: 5,
             },
-            data: [
-              {
-                value: [3, 3, 2, 1, 1],
-                name: "平均指数",
-              },
-            ],
+            left: "33.3333%",
+            right: "33.3333%",
+            top: 0,
+            bottom: 0,
+          },
+          {
+            name: "课堂互动",
+            type: "pie",
+            radius: "50%",
+            center: ["50%", "50%"],
+            data: data,
+            animation: true,
+            label: {
+              position: "outer",
+              alignTo: "edge",
+              margin: 20,
+            },
+            left: "66.6667%",
+            right: 0,
+            top: 0,
+            bottom: 0,
           },
         ],
+        color: ["#2f4554", "#61a0a8"],
+      },
+      option2: {
+        angleAxis: {
+          type: "category",
+          data: [
+            "课前完成作业",
+            "课前预习",
+            "课上专心上课",
+            "课上提问",
+            "课后制定计划",
+            "课后分配学习时间",
+            "课后阅读额外资料",
+            "课后复习",
+            "借鉴他人学习方法",
+          ],
+        },
+        radiusAxis: {},
+        polar: {},
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c}",
+        },
+        series: [
+          {
+            type: "bar",
+            data: [1, 2, 3, 4, 3, 5, 1, 2, 3],
+            coordinateSystem: "polar",
+            name: "物联网工程",
+            animation: true,
+            //数据堆叠
+            stack: "a",
+          },
+          {
+            type: "bar",
+            data: [2, 4, 6, 1, 3, 2, 1, 2, 3],
+            coordinateSystem: "polar",
+            name: "通信工程",
+            animation: true,
+            stack: "a",
+          },
+          {
+            type: "bar",
+            data: [1, 2, 3, 4, 1, 2, 5, 2, 3],
+            coordinateSystem: "polar",
+            name: "机械电子工程",
+            animation: true,
+            stack: "a",
+          },
+        ],
+        legend: {
+          show: true,
+          data: ["物联网工程", "通信工程", "机械电子工程"],
+        },
+      },
+      option3: {
+        xAxis: {
+          type: "category",
+          data: [
+            "完成作业",
+            "除作业外的自习",
+            "接受校内学习指导",
+            "接受校外培训",
+          ],
+        },
+        yAxis: {
+          type: "value",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ",
+        },
+        series: [
+          {
+            data: [120, 200, 150, 80],
+            type: "bar",
+            barMaxWidth: "50px",
+            name: "课外学习时间内的安排",
+          },
+        ],
+        color: ["#61a0a8"],
+      },
+      option4: {
+        xAxis: {
+          type: "category",
+          data: [
+            "缺乏学习动力",
+            "缺乏督促和指导",
+            "缺乏自学方法",
+            "贪玩旷课",
+            "跟不上课程进度",
+            "学习压力大",
+            "学习氛围不浓",
+            "无学习问题",
+          ],
+        },
+        yAxis: {
+          type: "value",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ",
+        },
+        series: [
+          {
+            data: [120, 200, 150, 80, 80, 80, 80, 80],
+            type: "bar",
+            barMaxWidth: "70px",
+            name: "学习方面遇到的最主要问题",
+          },
+        ],
+        color: ["#d48265"],
       },
     };
   },
   methods: {
-    // Q12 雷达
+    backTop() {
+      // let top =
+      //   document.documentElement.scrollTop ||
+      //   document.body.scrollTop ||
+      //   window.pageYOffset;
+      var element = document.getElementById("pdfDom");
+      element.scrollIntoView(true);
+      // animate(window, 0);
+    },
+    // Q12
     async getAnalysisData12() {
-      const { data: res12 } = await this.$axios.get("analysis/analysis12");
-      this.option.series[0].data[0].value = res12;
+      const { data: res1 } = await this.$axios.get("analysis/analysis12");
+      console.log(res1);
+      this.option.series[0].data = res1[0];
+      this.option.series[1].data = res1[1];
+      this.option.series[2].data = res1[2];
     },
-    // Q7 条形
-    async getAnalysisData2() {
-      const { data: res2 } = await this.$axios.get("analysis/analysis2");
-      this.option3.series[0].data.value = res2;
+    //Q13-15
+    async getAnalysisData13() {
+      const { data: res2 } = await this.$axios.get("analysis/analysis13");
       console.log(res2);
+      this.option2.series[0].data = res2.sumQ13Wlw;
+      this.option2.series[1].data = res2.sumQ13TX;
+      this.option2.series[2].data = res2.sumQ13Jxdz;
     },
-    // Q8 饼图
-    async getAnalysisData3() {
-      const { data: res3 } = await this.$axios.get("analysis/analysis3");
+    // Q18
+    async getAnalysisData18() {
+      const { data: res3 } = await this.$axios.get("analysis/analysis18");
+      res3[0].itemStyle = { color: "#c23531" };
       console.log(res3);
-      this.option2.visualMap.max = res3.length;
-      this.option2.series[0].data = res3;
+      this.option3.series[0].data = res3;
     },
-  },  
+    // Q19
+    async getAnalysisData19() {
+      const { data: res4 } = await this.$axios.get("analysis/analysis19");
+      console.log(res4);
+      this.option4.series[0].data = res4;
+    },
+  },
   // mounted 此时页面上的元素，已经被渲染完毕
-  mounted: async function () {
-    await this.getAnalysisData12();
-    // await this.getAnalysisData2();
-    // await this.getAnalysisData3();
+  mounted() {
+    this.getAnalysisData12();
+    this.getAnalysisData13();
+    this.getAnalysisData18();
+    this.getAnalysisData19();
   },
   components: {
     chartShow,
@@ -110,26 +357,63 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+<style lang="less" >
+.chart1Mode {
+  padding: 10px;
+  .body {
+    overflow: hidden;
+    .topic {
+      text-align: center;
+      margin-bottom: 20px;
+      > span {
+        font-size: 24px;
+        vertical-align: bottom;
+      }
+    }
+    .content {
+      text-indent: 2em;
+      padding-left: 20%;
+      padding-right: 20%;
+      margin-bottom: 15px;
+      overflow: hidden;
+      .tips {
+        color: rgb(163, 164, 165);
+        font-size: 14px;
+        padding-bottom: 10px;
+        padding-left: 5px;
+      }
+    }
+    .chart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+      .chartPie {
+        height: 500px;
+        width: 70%;
+        // box-sizing: border-box;
+        // border: black 1px solid;
+      }
+      .chartPolar {
+        height: 500px;
+        width: 60%;
+      }
+      .bar {
+        height: 500px;
+        width: 50%;
+      }
+      .barMultiple {
+        height: 500px;
+        width: 70%;
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  .radar {
-    height: 500px;
-    width: 50%;
-    border: 1px solid black;
-    box-sizing: border-box;
+    margin-top: 20px;
   }
-  .pie {
-    height: 500px;
-    width: 50%;
-  }
-}
-.bar {
-  height: 350px;
-  width: 80%;
 }
 </style>
