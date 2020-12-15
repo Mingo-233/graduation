@@ -63,7 +63,9 @@
       </el-col>
     </el-row>
     <p>即时统计概况&nbsp;{{ toDay }} 00:00:00 -- {{ presentTime }}</p>
-    <el-row style="background: #fff; padding: 16px 16px 0; margin: 32px 0">
+    <el-row
+      style="background: #fff; padding: 16px 16px 0; margin: 16px 0; weight: 0%"
+    >
       <line-chart :chart-data="lineChartData" />
     </el-row>
   </div>
@@ -165,7 +167,7 @@ export default {
       height: 18px;
       width: 3px;
       margin-right: 10px;
-      @include background_color("com_primary_color");
+      // @include background_color("com_primary_color");
     }
   }
   &.dashboard {
@@ -265,7 +267,7 @@ export default {
     }
     & + div {
       margin-top: -5px;
-      padding: 15px;
+      padding: 6px;
       background: #fff;
       display: flex;
       align-items: center;

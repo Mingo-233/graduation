@@ -31,9 +31,7 @@ export default {
       return `#icon-${this.iconClass}`;
     },
   },
-  mounted() {
-    console.log(this.iconClass);
-  },
+  mounted() {},
 };
 </script>
 

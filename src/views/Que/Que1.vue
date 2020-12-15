@@ -303,6 +303,8 @@ export default {
   mounted() {
     const s = new Set([]);
     this.queSetArr = s;
+    console.log(this.queSetArr);
+    console.log(typeof this.queSetArr);
     // 获取问题按钮div盒子下dom元素
     this.arrQuebtn = this.$refs.btnQues.children;
     this.arrQuebtn1 = this.$refs.btnQues1.children;

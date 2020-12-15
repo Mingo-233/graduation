@@ -16,10 +16,6 @@
       <el-table-column prop="profession" label="父母职业阶级">
       </el-table-column>
     </el-table>
-    <svg-icon icon-class="sampleData"></svg-icon>
-    <svg-icon icon-class="major"></svg-icon>
-    <!-- :width="50 + 'px'"
-      :height="50 + 'px'" -->
   </div>
 </template>
 

@@ -63,6 +63,17 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
+        title: {
+          text: "最近一周内有效样本数增长情况",
+          // subtext: "副标题",
+          textStyle: {
+            fontWeight: "normal",
+            fontSize: 16,
+            color: "#606266",
+          },
+          top: 0,
+          left: "4%",
+        },
         xAxis: {
           data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
           boundaryGap: false,
