@@ -117,18 +117,27 @@ export default {
             left: "16.67%",
             top: "75%",
             textAlign: "center",
+            subtextStyle: {
+              color: "#000",
+            },
           },
           {
             subtext: "我对所学的内容充满好奇，具有充足的学习兴趣",
             left: "50%",
             top: "75%",
             textAlign: "center",
+            subtextStyle: {
+              color: "#000",
+            },
           },
           {
             subtext: "我上课时经常有很多问题想要向老师提问",
             left: "83.33%",
             top: "75%",
             textAlign: "center",
+            subtextStyle: {
+              color: "#000",
+            },
           },
         ],
         tooltip: {
@@ -282,8 +291,16 @@ export default {
             "跟不上课程进度",
             "学习压力大",
             "学习氛围不浓",
-            "无学习问题",
+            "无",
           ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            rotate: 30, //文字逆时针旋转
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
         },
         yAxis: {
           type: "value",
@@ -390,7 +407,7 @@ export default {
       margin: 20px 0;
       .chartPie {
         height: 500px;
-        width: 70%;
+        width: 80% !important;
         // box-sizing: border-box;
         // border: black 1px solid;
       }
@@ -404,7 +421,7 @@ export default {
       }
       .barMultiple {
         height: 500px;
-        width: 70%;
+        width: 90% !important;
       }
     }
   }

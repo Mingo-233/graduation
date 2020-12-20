@@ -245,18 +245,27 @@ export default {
             left: "16.67%",
             top: "75%",
             textAlign: "center",
+            subtextStyle: {
+              color: "#000",
+            },
           },
           {
             subtext: "需要非常努力才能达到课程要求",
             left: "50%",
             top: "75%",
             textAlign: "center",
+            subtextStyle: {
+              color: "#000",
+            },
           },
           {
             subtext: "我在课外花很多时间来完成老师布置的作业",
             left: "83.33%",
             top: "75%",
             textAlign: "center",
+            subtextStyle: {
+              color: "#000",
+            },
           },
         ],
         tooltip: {
@@ -465,6 +474,14 @@ export default {
             "人生观、价值观等问题",
             "以上均没有",
           ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            rotate: 20, //文字逆时针旋转
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
         },
         yAxis: {
           type: "value",
@@ -494,6 +511,14 @@ export default {
             "辅导员帮助",
             "没有接受过学业指导",
           ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            rotate: 20, //文字逆时针旋转
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
         },
         yAxis: {
           type: "value",
@@ -524,6 +549,14 @@ export default {
             "同学间交流机会少",
             "考核方式不完善",
           ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            rotate: 20, //文字逆时针旋转
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
         },
         yAxis: {
           type: "value",

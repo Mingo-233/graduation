@@ -56,7 +56,9 @@
       </div>
     </div>
     <div class="footer">
-      <el-button type="primary round plain">回到顶部</el-button>
+      <el-button type="primary round plain" @click="backTop()"
+        >回到顶部</el-button
+      >
       <el-button type="primary round plain" @click="getPdf()"
         >保存本地</el-button
       >
@@ -218,6 +220,7 @@ export default {
         title: {
           text: "在本专业学习情况",
           subtext: "数据来自本网站系统数据采集  ",
+          top: 0,
         },
         tooltip: {
           trigger: "axis",
@@ -231,6 +234,7 @@ export default {
             通信工程: false,
             机械电子工程: false,
           },
+          top: 20,
         },
         grid: {
           left: "3%",
@@ -245,13 +249,13 @@ export default {
         yAxis: {
           type: "category",
           data: [
-            "关注与本专业相关的行业热点和前沿动态",
+            "关注本专业相关的行业热点",
             "个性特征适合在本专业学习",
-            "本专业学习过程充满乐趣",
-            "积极主动地学习本专业知识",
-            "重新选择专业，我仍会选择本专业",
-            "愿意选择与本专业对口的工作",
-            "对本专业的未来发展有信心",
+            "学习过程充满乐趣",
+            "积极学习本专业知识",
+            "重选专业，仍会选择本专业",
+            "愿意选择与专业对口的工作",
+            "对本专业未来发展有信心",
           ],
         },
         series: [
@@ -304,6 +308,10 @@ export default {
       console.log(res3);
       this.option2.visualMap.max = res3.length;
       this.option2.series[0].data = res3;
+    },
+    backTop() {
+      var element = document.getElementById("pdfDom");
+      element.scrollIntoView(true);
     },
   },
   // mounted 此时页面上的元素，已经被渲染完毕
@@ -358,11 +366,12 @@ export default {
       justify-content: center;
       align-items: center;
       margin: 20px 0;
+
       .radar {
         height: 500px;
         width: 50%;
         // box-sizing: border-box;
-        border: black 1px solid;
+        // border: black 1px solid;
       }
       .pie {
         height: 500px;
@@ -370,7 +379,8 @@ export default {
       }
       .bar {
         height: 350px;
-        width: 60%;
+        width: 70% !important;
+        // border: black 1px solid;
       }
     }
   }

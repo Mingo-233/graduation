@@ -210,6 +210,14 @@ export default {
             "社会公益活动",
             "没有参加过",
           ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            rotate: 20, //文字逆时针旋转
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
         },
         yAxis: {
           type: "value",
@@ -240,6 +248,14 @@ export default {
             "了解相关知识和技能",
             "维护校园卫生环境",
           ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            rotate: 20, //文字逆时针旋转
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
         },
         yAxis: {
           type: "value",
