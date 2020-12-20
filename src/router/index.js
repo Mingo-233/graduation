@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Welcome from '../views/dashboard/Welcome.vue'
 import Basics from '../views/Basics.vue'
-import Conclusion from '../views/Conclusion.vue'
+import Conclusion from '../views/conclusion/Conclusion/index.vue'
+import suggestion from '../views/conclusion/suggestion/index.vue'
 import Chart1 from '../views/chartPage/Chart1/Chart.vue'
 import Chart2 from '../views/chartPage/Chart2/Chart.vue'
 import Chart3 from '../views/chartPage/Chart3/Chart.vue'
@@ -11,7 +12,7 @@ import Chart4 from '../views/chartPage/Chart4/Chart.vue'
 import Question from '../views/Question.vue'
 import demo from '../views/demo.vue'
 import { Que1, Que2, Que3, Que4, Que5 } from '../views/Que'
-import conclusionPerson from '../views/conclusionPerson/index.vue'
+
 
 Vue.use(VueRouter)
 const routes = [
@@ -27,7 +28,7 @@ const routes = [
       { path: '/chart3', component: Chart3 },
       { path: '/chart4', component: Chart4 },
       { path: '/conclusion', component: Conclusion },
-      { path: '/conclusionPerson', component: conclusionPerson },
+      { path: '/suggestion', component: suggestion },
       { name: 'question', path: '/question', component: Question },
     ]
   },

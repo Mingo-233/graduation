@@ -5,12 +5,16 @@
       <el-breadcrumb-item>采样问卷</el-breadcrumb-item>
       <el-breadcrumb-item>问卷详情</el-breadcrumb-item>
     </el-breadcrumb>
-    <h1>请选择下面模块开始测试</h1>
-    <el-button @click="moudle1Btn">专业认知模块</el-button>
-    <el-button @click="moudle2Btn">学习投入模块</el-button>
-    <el-button @click="moudle3Btn">教育培养模块</el-button>
-    <el-button @click="moudle4Btn">德育与能力模块</el-button>
-    <el-button @click="moudle5Btn">在校体验模块</el-button>
+    <div class="content">
+      <h1 class="title">请选择下面模块开始测试</h1>
+      <div class="btns">
+        <el-button @click="moudle1Btn">专业认知模块</el-button>
+        <el-button @click="moudle2Btn">学习投入模块</el-button>
+        <el-button @click="moudle3Btn">教育培养模块</el-button>
+        <el-button @click="moudle4Btn">德育与能力模块</el-button>
+        <el-button @click="moudle5Btn">在校体验模块</el-button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -39,5 +43,24 @@ export default {
 };
 </script>
 
-<style  lang="less">
+<style lang="less" scoped>
+.box {
+  background: url("~@/assets/paper.png") no-repeat fixed;
+  background-position: 98% 95%;
+  width: 100%;
+  height: 100%;
+  .content {
+    margin-top: 5%;
+    text-align: center;
+    .btns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 5%;
+      .el-button {
+        margin-left: 40px;
+      }
+    }
+  }
+}
 </style>

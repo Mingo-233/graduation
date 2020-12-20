@@ -148,8 +148,8 @@
             <el-button el-button type="primary" @click="save" class="submit"
               >提交</el-button
             >
-            <el-button el-button @click="resetForm">重置</el-button>
-            <el-button type="primary" @click="openDialog">打开</el-button>
+            <!-- <el-button el-button @click="resetForm">重置</el-button>
+            <el-button type="primary" @click="openDialog">打开</el-button> -->
             <el-dialog
               title="提示"
               :visible.sync="dialogVisible"
@@ -475,27 +475,20 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 .box {
   display: flex;
+  flex-wrap: wrap;
   margin: 30px 50px;
   padding-left: 5%;
   box-sizing: border-box;
+  background: url("~@/assets/paper.png") no-repeat fixed;
+  background-position: 97% 90%;
   .main {
-    height: 100%;
     flex: 5;
     border: 2px solid #ccc;
     margin-right: 5%;
-    .clearfix {
-      &::after,
-      &::before {
-        display: table;
-        content: "";
-      }
-      &::after {
-        clear: both;
-      }
-    }
+
     .el-divider__text,
     .el-link {
       float: right;
@@ -556,6 +549,7 @@ export default {
     }
   }
 }
+
 .el-card {
   margin: 10px 50px;
 }

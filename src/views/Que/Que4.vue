@@ -270,7 +270,7 @@
             <el-button el-button type="primary" @click="save" class="submit"
               >提交</el-button
             >
-            <el-button type="primary" @click="openDialog">打开</el-button>
+            <!-- <el-button type="primary" @click="openDialog">打开</el-button> -->
             <el-dialog
               title="提示"
               :visible.sync="dialogVisible"
@@ -605,6 +605,8 @@ export default {
   margin: 30px 50px;
   padding-left: 5%;
   box-sizing: border-box;
+  background: url("~@/assets/paper.png") no-repeat fixed;
+  background-position: 97% 90%;
   .main {
     height: 100%;
     flex: 5;
