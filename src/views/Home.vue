@@ -8,6 +8,7 @@
       <el-tooltip content="返回首页" placement="bottom" effect="dark">
         <el-button @click="home" icon="el-icon-house"></el-button>
       </el-tooltip>
+      <el-button @click="login" icon="el-icon-house">登录</el-button>
     </el-header>
     <!-- 页面主体区域 -->
     <el-container>
@@ -93,6 +94,9 @@ export default {
       window.sessionStorage.clear();
       // 编程式导航
       this.$router.push("/welcome");
+    },
+    login() {
+      this.$router.push("/login");
     },
     getMenuList: async function () {
       // 返回的是promise对象，访问路由是menus

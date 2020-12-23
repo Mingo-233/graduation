@@ -11,6 +11,7 @@ import Chart3 from '../views/chartPage/Chart3/Chart.vue'
 import Chart4 from '../views/chartPage/Chart4/Chart.vue'
 import Question from '../views/Question.vue'
 import demo from '../views/demo.vue'
+import Login from '../views/login.vue'
 import { Que1, Que2, Que3, Que4, Que5 } from '../views/Que'
 
 
@@ -46,6 +47,9 @@ const routes = [
   },
   {
     name: 'que5', path: '/que5', component: Que5
+  },
+  {
+    name: 'login', path: '/login', component: Login
   },
   {
     path: '/demo', component: demo
