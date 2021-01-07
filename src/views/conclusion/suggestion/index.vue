@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     async getCommentData() {
-      const { data } = await this.$axios.get("analysis/comment");
+      const { data } = await this.$get("analysis/comment");
       this.formData = data;
       console.log(this.formData);
     },

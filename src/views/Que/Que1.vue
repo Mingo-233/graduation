@@ -301,10 +301,7 @@ export default {
         window.localStorage.setItem("PersonData", JSON.stringify(basicsData));
         //window.sessionStorage.setItem("PersonData", JSON.stringify(basicsData));
 
-        const res = await this.$axios.post(
-          "form/form1",
-          this.$Qs.stringify(params)
-        );
+        const res = await this.$post("form/form1", this.$Qs.stringify(params));
         console.log(res);
         if (!res.data.errMessage) {
           this.$alert("提交成功，您可以查看本次测试得分情况。", "提示", {
@@ -399,7 +396,7 @@ export default {
     },
     // 获取问题数据列表
     async getQuestionList() {
-      const { data } = await this.$axios.get("formData/questions");
+      const { data } = await this.$get("formData/questions");
       this.arrQueList = data;
     },
     // 点击按钮跳转锚点

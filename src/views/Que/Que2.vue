@@ -364,7 +364,7 @@ export default {
         window.localStorage.setItem("PersonData", JSON.stringify(basicsData));
         //window.sessionStorage.setItem("PersonData", JSON.stringify(basicsData));
 
-        const res = await this.$axios.post(
+        const res = await this.$post(
           "form/form2",
           this.$Qs.stringify(params)
         );
@@ -453,7 +453,7 @@ export default {
     },
     // 获取问题数据列表
     async getQuestionList() {
-      const { data: data2 } = await this.$axios.get("formData/questions2");
+      const { data: data2 } = await this.$get("formData/questions2");
       this.arrQueList2 = data2;
     },
     // 点击按钮跳转锚点

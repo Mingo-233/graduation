@@ -283,7 +283,7 @@ export default {
     },
     // Q30
     async getAnalysisData30() {
-      const { data: res1 } = await this.$axios.get("analysis/analysis30");
+      const { data: res1 } = await this.$get("analysis/analysis30");
       this.option.series[0].data[0].value = res1.sumQ30;
       this.option.series[0].data[1].value = res1.sumQ30Wlw;
       this.option.series[0].data[2].value = res1.sumQ30Tx;
@@ -291,11 +291,11 @@ export default {
       console.log(res1);
     },
     async getAnalysisData31() {
-      const { data: res2 } = await this.$axios.get("analysis/analysis31");
+      const { data: res2 } = await this.$get("analysis/analysis31");
       this.option2.series[0].data = res2;
     },
     async getAnalysisData32() {
-      const { data: res3 } = await this.$axios.get("analysis/analysis32");
+      const { data: res3 } = await this.$get("analysis/analysis32");
       this.option3.series[0].data = res3;
     },
   },

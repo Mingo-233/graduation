@@ -584,7 +584,7 @@ export default {
     },
     // Q21
     async getAnalysisData21() {
-      const { data: res1 } = await this.$axios.get("analysis/analysis21");
+      const { data: res1 } = await this.$get("analysis/analysis21");
       this.option.series[0].data[0].value = res1.sumQ21;
       this.option.series[0].data[1].value = res1.sumQ21Wlw;
       this.option.series[0].data[2].value = res1.sumQ21Tx;
@@ -593,7 +593,7 @@ export default {
     },
     //Q22
     async getAnalysisData22() {
-      const { data: res2 } = await this.$axios.get("analysis/analysis22");
+      const { data: res2 } = await this.$get("analysis/analysis22");
       console.log(res2);
       this.option2.series[0].data = res2[0];
       this.option2.series[1].data = res2[1];
@@ -601,7 +601,7 @@ export default {
     },
     // Q23
     async getAnalysisData23() {
-      const { data: res3 } = await this.$axios.get("analysis/analysis23");
+      const { data: res3 } = await this.$get("analysis/analysis23");
       this.option3.series[0].data[0].value = res3.sumQ23;
       this.option3.series[0].data[1].value = res3.sumQ23Wlw;
       this.option3.series[0].data[2].value = res3.sumQ23Tx;
@@ -609,20 +609,20 @@ export default {
       console.log(res3);
     },
     async getAnalysisData26() {
-      const { data: res4 } = await this.$axios.get("analysis/analysis26");
+      const { data: res4 } = await this.$get("analysis/analysis26");
       console.log(res4);
       this.option4.series[0].data = res4;
     },
     async getAnalysisData27() {
-      const { data: res5 } = await this.$axios.get("analysis/analysis27");
+      const { data: res5 } = await this.$get("analysis/analysis27");
       this.option5.series[0].data = res5;
     },
     async getAnalysisData28() {
-      const { data: res6 } = await this.$axios.get("analysis/analysis28");
+      const { data: res6 } = await this.$get("analysis/analysis28");
       this.option6.series[0].data = res6;
     },
     async getAnalysisData29() {
-      const { data: res7 } = await this.$axios.get("analysis/analysis29");
+      const { data: res7 } = await this.$get("analysis/analysis29");
       this.option7.series[0].data = res7;
     },
   },

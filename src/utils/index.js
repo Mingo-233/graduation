@@ -111,3 +111,7 @@ export function debounce(func, wait, immediate) {
         return result
     }
 }
+
+export function isExternal(path) {
+    return /^(https?:|mailto:|tel:)/.test(path)
+}

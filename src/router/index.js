@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '@/layout/index'
 import Welcome from '../views/dashboard/Welcome.vue'
 import Basics from '../views/Basics.vue'
 import Conclusion from '../views/conclusion/Conclusion/index.vue'

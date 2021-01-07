@@ -138,7 +138,7 @@ export default {
   },
   methods: {
     async getBasicsData() {
-      const { data: res } = await this.$axios.get("analysis/analysis0");
+      const { data: res } = await this.$get("analysis/analysis0");
       console.log(res);
       this.tableData = res;
     },

@@ -45,7 +45,7 @@ export default {
       this.$router.push("question");
     },
     async getScore() {
-      const { data } = await this.$axios.get(
+      const { data } = await this.$get(
         `person/personCheck${this.type}/${this.id}`
       );
       this.score = data.score;

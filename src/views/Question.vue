@@ -1,5 +1,5 @@
 <template>
-  <div class="box" v-title data-title="问卷 ">
+  <div class="box" v-title data-title="问卷">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>采样问卷</el-breadcrumb-item>

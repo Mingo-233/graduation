@@ -333,7 +333,7 @@ export default {
     },
     // Q12
     async getAnalysisData12() {
-      const { data: res1 } = await this.$axios.get("analysis/analysis12");
+      const { data: res1 } = await this.$get("analysis/analysis12");
       console.log(res1);
       this.option.series[0].data = res1[0];
       this.option.series[1].data = res1[1];
@@ -341,7 +341,7 @@ export default {
     },
     //Q13-15
     async getAnalysisData13() {
-      const { data: res2 } = await this.$axios.get("analysis/analysis13");
+      const { data: res2 } = await this.$get("analysis/analysis13");
       console.log(res2);
       this.option2.series[0].data = res2.sumQ13Wlw;
       this.option2.series[1].data = res2.sumQ13TX;
@@ -349,14 +349,14 @@ export default {
     },
     // Q18
     async getAnalysisData18() {
-      const { data: res3 } = await this.$axios.get("analysis/analysis18");
+      const { data: res3 } = await this.$get("analysis/analysis18");
       res3[0].itemStyle = { color: "#c23531" };
       console.log(res3);
       this.option3.series[0].data = res3;
     },
     // Q19
     async getAnalysisData19() {
-      const { data: res4 } = await this.$axios.get("analysis/analysis19");
+      const { data: res4 } = await this.$get("analysis/analysis19");
       console.log(res4);
       this.option4.series[0].data = res4;
     },

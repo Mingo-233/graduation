@@ -1,6 +1,7 @@
 <template>
-  <div class="login-container">
+  <div class="login-container" v-title data-title="登录">
     <div class="login-from-container" :class="{ show: show }">
+      <h2 class="headline">大学生学情分析系统</h2>
       <el-form
         class="login-form"
         :rules="rules"
@@ -15,30 +16,22 @@
           <span></span>
         </h3>
         <el-form-item prop="username">
-          <span class="svg-container svg-container_login">
-            <svg-icon icon-class="user" />
-          </span>
-          <my-input
+          <el-input
             v-model="loginForm.username"
             placeholder="请输入用户名"
-          ></my-input>
+            prefix-icon="el-icon-user"
+          >
+          </el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <span class="svg-container svg-container_login">
-            <svg-icon icon-class="password"></svg-icon>
-          </span>
-          <my-input
-            :type="pwdType"
+          <el-input
+            show-password
             v-model="loginForm.password"
             @keyup.enter.native="handleLogin"
+            prefix-icon="el-icon-lock"
             placeholder="请输入密码"
-          ></my-input>
-          <span class="show-pwd" @click="showPwd">
-            <svg-icon
-              :icon-class="pwdType === 'text' ? 'eyeOpen' : 'eye'"
-              :style="pwdType === 'text' ? 'color:#409EFF' : ''"
-            />
-          </span>
+          >
+          </el-input>
         </el-form-item>
         <el-form-item style="margin-top: 30px">
           <el-row>
@@ -51,18 +44,7 @@
               >
                 登 录
               </el-button>
-            </el-col>
-            <el-col :span="24" style="margin-top: 10px">
-              <el-row :gutter="20">
-                <el-col :span="12">
-                  <el-button
-                    type="success"
-                    @click="adminLoading"
-                    style="width: 100%"
-                    >admin 登录</el-button
-                  >
-                </el-col>
-              </el-row>
+              <el-button @click="test">testToken</el-button>
             </el-col>
           </el-row>
         </el-form-item>
@@ -80,23 +62,16 @@
 </template>
 
 <script>
-import MyInput from "@/components/input";
-
 export default {
   name: "login",
   data() {
     return {
       redirect: undefined,
-      otherQuery: {},
-      focusInLine: false,
-      focusOutLine: false,
       loading: false,
-      pwdType: "password",
       loginForm: {
-        username: "",
-        password: "",
+        username: "admin",
+        password: "qwer1",
       },
-      isOpen: false,
       show: false,
       isLogin: true,
       rules: {
@@ -113,20 +88,12 @@ export default {
         const query = route.query;
         if (query) {
           this.redirect = query.redirect;
-          this.otherQuery = this.getOtherQuery(query);
         }
       },
       immediate: true,
     },
   },
   methods: {
-    showPwd() {
-      if (this.pwdType === "password") {
-        this.pwdType = "text";
-      } else {
-        this.pwdType = "password";
-      }
-    },
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
@@ -135,11 +102,12 @@ export default {
           this.$store
             .dispatch("Login", this.loginForm)
             .then((res) => {
-              this.$router.push(
-                { path: this.redirect || "/", query: this.otherQuery },
-                (onComplete) => {},
-                (onAbort) => {}
-              );
+              console.log(res);
+              this.$message({
+                message: res.data.msg,
+                type: "success",
+              });
+              this.$router.push({ path: this.redirect || "/" });
             })
             .catch(() => {
               this.isLogin = true;
@@ -148,18 +116,18 @@ export default {
         }
       });
     },
-    getOtherQuery(query) {
-      return Object.keys(query).reduce((acc, cur) => {
-        if (cur !== "redirect") {
-          acc[cur] = query[cur];
-        }
-        return acc;
-      }, {});
-    },
-    adminLoading() {
-      this.loginForm.username = "admin";
-      this.loginForm.password = "123456";
-      this.handleLogin();
+    async test() {
+      const params = {
+        username: "admin",
+        password: "qwer12",
+      };
+      const { data } = await this.$post("/login", this.$Qs.stringify(params));
+      if (data.status === 0) {
+        this.$message({
+          message: data.msg,
+          type: "warning",
+        });
+      }
     },
   },
   mounted() {
@@ -167,80 +135,23 @@ export default {
       this.show = true;
     }, 1);
   },
-  components: {
-    MyInput,
-  },
+  components: {},
 };
 </script>
 
-<style rel="stylesheet/scss" lang="less">
-.login-container {
-  .el-form-item__error {
-    padding-top: 5px;
-    padding-left: 37px !important;
-  }
-}
-@media screen and (max-width: 530px) {
-  .login-from-container {
-    width: 90% !important;
-  }
-  .login-container .login-form {
-    width: 100% !important;
-    padding: 5%;
-  }
-}
-// $bg: #2d3a4b;
-// $light_gray: #eee;
-.loader-inner {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto;
-}
-/* reset element-ui css */
-.login-container {
-  .el-form-item__error {
-    padding-left: 26px;
-  }
-  .el-input {
-    display: inline-block;
-    height: 47px;
-    width: 85%;
-    input {
-      background: transparent;
-      border: 0px;
-      -webkit-appearance: none;
-      border-radius: 0px;
-      padding: 12px 5px 12px 15px;
-      color: #666;
-      height: 47px;
-    }
-  }
-  .el-form-item {
-    color: #454545;
-  }
-}
-</style>
-
 <style rel="stylesheet/scss" lang="less" scoped>
-// $bg: #2d3a4b;
-// $dark_gray: #889aa4;
-// $light_gray: #eee;
-.svg-container {
-  display: block;
-  width: 20px;
-  font-size: 18px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  line-height: 49px;
-}
 .login-container {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  //   background: url(../../../assets/500269947.jpg) no-repeat top center;
+  background: url(~@/assets/bg.jpg) no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
+  .headline {
+    margin-top: 8%;
+    text-align: center;
+    color: rgb(29, 50, 95);
+  }
   .login-from-container {
     position: fixed;
     top: 20px;
@@ -254,6 +165,7 @@ export default {
     -webkit-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     background: #fff;
+    opacity: 0.9;
     overflow-y: auto;
     .login-form {
       width: 80%;
@@ -288,15 +200,6 @@ export default {
       }
     }
   }
-  .svg-container {
-    // color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-    &_login {
-      font-size: 20px;
-    }
-  }
   .title {
     position: relative;
     font-size: 24px;
@@ -314,15 +217,6 @@ export default {
       left: 50%;
       margin-left: -5%;
     }
-  }
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    // color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
   }
 }
 </style>

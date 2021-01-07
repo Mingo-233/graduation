@@ -775,7 +775,7 @@ export default {
       this.$refs.ruleForm.validate(async (valid) => {
         if (!valid) return;
         // this.$message.success('添加成功')
-        const res = await this.$axios.post("form", this.$Qs.stringify(params));
+        const res = await this.$post("form", this.$Qs.stringify(params));
         console.log(res);
         this.$alert("提交成功，感谢您的参与", "提示", {
           confirmButtonText: "确定",
@@ -809,15 +809,15 @@ export default {
     },
     // 获取问题数据列表
     async getQuestionList() {
-      const { data } = await this.$axios.get("formData/questions");
+      const { data } = await this.$get("formData/questions");
       this.arrQueList = data;
-      const { data: data2 } = await this.$axios.get("formData/questions2");
+      const { data: data2 } = await this.$get("formData/questions2");
       this.arrQueList2 = data2;
-      const { data: data3 } = await this.$axios.get("formData/questions3");
+      const { data: data3 } = await this.$get("formData/questions3");
       this.arrQueList3 = data3;
-      const { data: data4 } = await this.$axios.get("formData/questions4");
+      const { data: data4 } = await this.$get("formData/questions4");
       this.arrQueList4 = data4;
-      const { data: data5 } = await this.$axios.get("formData/questions5");
+      const { data: data5 } = await this.$get("formData/questions5");
       this.arrQueList5 = data5;
     },
     // 点击按钮跳转锚点

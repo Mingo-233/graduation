@@ -286,7 +286,7 @@ export default {
   methods: {
     // Q9 雷达
     async getAnalysisData1() {
-      const { data: res1 } = await this.$axios.get("analysis/analysis1");
+      const { data: res1 } = await this.$get("analysis/analysis1");
       this.option.series[0].data[0].value = res1.sumQ9;
       this.option.series[0].data[1].value = res1.sumQ9Wlw;
       this.option.series[0].data[2].value = res1.sumQ9Tx;
@@ -295,7 +295,7 @@ export default {
     },
     // Q10 条形
     async getAnalysisData2() {
-      const { data: res2 } = await this.$axios.get("analysis/analysis2");
+      const { data: res2 } = await this.$get("analysis/analysis2");
       this.option3.series[0].data = res2.sumQ10;
       this.option3.series[1].data = res2.sumQ10Jxdz;
       this.option3.series[2].data = res2.sumQ10Tx;
@@ -304,7 +304,7 @@ export default {
     },
     // Q11 饼图
     async getAnalysisData3() {
-      const { data: res3 } = await this.$axios.get("analysis/analysis3");
+      const { data: res3 } = await this.$get("analysis/analysis3");
       console.log(res3);
       this.option2.visualMap.max = res3.length;
       this.option2.series[0].data = res3;
