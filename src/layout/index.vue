@@ -2,7 +2,7 @@
   <div :class="classObj" class="app-wrapper">
     <sidebar class="sidebar-container" />
     <div class="main-container">
-      <div :class="{ 'fixed-header': fixedHeader }">
+      <div>
         <navbar />
       </div>
       <app-main />
@@ -27,9 +27,7 @@ export default {
       return this.$store.state.app.sidebar;
     },
 
-    fixedHeader() {
-      return this.$store.state.settings.fixedHeader;
-    },
+
     classObj() {
       return {
         hideSidebar: !this.sidebar.opened,

@@ -5,7 +5,7 @@
       :toggleClick="toggleSideBar"
       :isActive="sidebar.opened"
     ></hamburger>
-    <!-- <breadcrumb></breadcrumb> -->
+    <breadcrumb></breadcrumb>
     <div class="right-menu">
       <el-dropdown
         class="avatar-container right-menu-item hover-effect"
@@ -45,10 +45,11 @@
 import { mapGetters } from "vuex";
 import { getInfos } from "@/utils/auth";
 import Hamburger from "@/components/Hamburger";
-
+import Breadcrumb from '@/components/Breadcrumb'
 export default {
   components: {
     Hamburger,
+    Breadcrumb
   },
   data() {
     return {
@@ -69,6 +70,7 @@ export default {
     // },
     changePwd() {},
     toggleSideBar() {
+      console.log('11');
       this.$store.dispatch("ToggleSideBar");
     },
     logout() {
