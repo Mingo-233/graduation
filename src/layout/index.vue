@@ -1,11 +1,35 @@
 <template>
-  <div :class="classObj" class="app-wrapper">
+  <div class="app-wrapper" :class="classObj">
+    <div
+      v-if="device === 'mobile' && sidebar.opened"
+      class="drawer-bg"
+      @click="handleClickOutside"
+    />
     <sidebar class="sidebar-container" />
     <div class="main-container">
-      <div>
+      <div ref="navbar">
         <navbar />
       </div>
-      <app-main />
+      <div ref="appmain">
+        <app-main
+          :style="{ height: contentHeight + 'px', 'overflow-y': 'auto' }"
+        />
+      </div>
+      <div
+        class="footer overh"
+        ref="footer"
+        style="
+          line-height: 50px;
+          position: absolute;
+          z-index: 1002;
+          width: 100%;
+          bottom: 0;
+        "
+      >
+        <div class="pull-right" style="padding-right: 20px; float: right">
+          © <a href="javascript:;" target="_blank">大学生学情分析系统</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -15,44 +39,76 @@ import { Navbar, Sidebar, AppMain } from "./components";
 import ResizeMixin from "./mixin/ResizeHandler";
 
 export default {
-  name: "Layout",
+  name: "layout",
+  data() {
+    return {
+      showSettings: true,
+      contentHeight: 0,
+      timer: false,
+    };
+  },
   components: {
     Navbar,
     Sidebar,
     AppMain,
   },
+  watch: {
+    contentHeight(val) {
+      this.contentHeight = val;
+      this.$store.dispatch("heightAuto", this.contentHeight);
+    },
+  },
   mixins: [ResizeMixin],
   computed: {
+    structure() {
+      return this.$store.getters.structure;
+    },
     sidebar() {
       return this.$store.state.app.sidebar;
     },
-
-
+    device() {
+      return this.$store.state.app.device;
+    },
     classObj() {
       return {
         hideSidebar: !this.sidebar.opened,
-        openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
+        mobile: this.device === "mobile",
       };
     },
   },
-  methods: {},
+  mounted() {
+    const _this = this;
+    console.log(this.$store.getters);
+    this.onresizeHeight();
+    this.$nextTick(() => {
+      window.onresize = () => {
+        _this.onresizeHeight();
+      };
+    });
+  },
+  methods: {
+    onresizeHeight() {
+      const navbarHeight = this.$refs.navbar.offsetHeight;
+      const footerHeight = this.$refs.footer.offsetHeight;
+      this.contentHeight =
+        document.documentElement.clientHeight - (navbarHeight + footerHeight);
+      this.$store.dispatch("heightAuto", this.contentHeight);
+    },
+    handleClickOutside() {
+      this.$store.dispatch("CloseSideBar", { withoutAnimation: false });
+    },
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-@import "~@/styles/mixin.scss";
-@import "~@/styles/variables.scss";
-
+<style rel="stylesheet/scss" lang="scss" scoped>
+@import "./../styles/mixin.scss";
 .app-wrapper {
   @include clearfix;
   position: relative;
   height: 100%;
   width: 100%;
-  &.mobile.openSidebar {
-    position: fixed;
-    top: 0;
-  }
 }
 .drawer-bg {
   background: #000;
@@ -62,22 +118,5 @@ export default {
   height: 100%;
   position: absolute;
   z-index: 999;
-}
-
-.fixed-header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 9;
-  width: calc(100% - #{$sideBarWidth});
-  transition: width 0.28s;
-}
-
-.hideSidebar .fixed-header {
-  width: calc(100% - 54px);
-}
-
-.mobile .fixed-header {
-  width: 100%;
 }
 </style>

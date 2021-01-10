@@ -25,6 +25,20 @@ export function getInfo(token) {
         },
         transformRequest: [function (data, headers) {
             // 对 data 进行任意转换处理
+            return Qs.stringify(data)
+        }],
+    })
+}
+
+export function getMenu(Key) {
+    return request({
+        url: '/login/UserMenu',
+        method: 'post',
+        data: {
+            Key: Key
+        },
+        transformRequest: [function (data, headers) {
+            // 对 data 进行任意转换处理
             console.log(data);
             return Qs.stringify(data)
         }],

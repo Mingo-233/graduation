@@ -1,9 +1,5 @@
 <template>
   <div class="basics">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>基础指数</el-breadcrumb-item>
-    </el-breadcrumb>
     <div class="title">数据样本的基础信息</div>
     <el-table :data="tableData" stripe border style="width: 100%">
       <el-table-column type="index" label="#" width="30px"></el-table-column>

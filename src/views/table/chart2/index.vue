@@ -1,10 +1,5 @@
 <template>
   <div v-title data-title="学习投入模块" class="chart1Mode" id="pdfDom">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>图表数据</el-breadcrumb-item>
-      <el-breadcrumb-item>学习投入模块</el-breadcrumb-item>
-    </el-breadcrumb>
     <div class="body">
       <div class="topic">
         <svg
@@ -87,7 +82,7 @@
 
 <script>
 var echarts = require("echarts");
-import chartShow from "./component/chartShow";
+import chartShow from "@/components/chartShow";
 import { animate } from "@/utils/index";
 const _this = this;
 export default {

@@ -1,9 +1,5 @@
 <template>
   <div class="app-container dashboard" v-title data-title="首页">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item></el-breadcrumb-item>
-    </el-breadcrumb>
     <el-row :gutter="20" style="margin: 0 !important" class="all-count">
       <el-col :span="6">
         <div class="card_box bg_box">

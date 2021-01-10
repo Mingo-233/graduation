@@ -1,14 +1,18 @@
 
-// import Layout from '@/layout'
+import Layout from '@/layout'
+import initRouters from '@/router/initRouter';
 
 const permission = {
   state: {
-    routers: [],
+    routers: initRouters,
     addRouters: []
   },
   mutations: {
-    SET_ROUTERS: (state, routers) => {
-      state.addRouters = routers
+    SET_ROUTERS: (state, routersList) => {
+      state.addRouters = routersList
+      state.routers = initRouters.concat(routersList)
+      // state.routers = router.concat(routersList)
+
 
     }
   },
@@ -23,11 +27,11 @@ export const filterAsyncRouter = (routers) => { // 遍历后台传来的路由�
   const accessedRouters = routers.map(res => {
     return {
       path: res.path,
-      component: res.component,
+      component: res.Component,
       children: res.children,
-      name: res.name,
-      meta: Object.assign(res.meta, {Id: res.Id}),
-      hidden: res.hidden
+      name: res.uname,
+      id: res.id,
+      meta: res.meta,
     }
   }).filter(router => {
     if (router.component) {
@@ -42,6 +46,7 @@ export const filterAsyncRouter = (routers) => { // 遍历后台传来的路由�
     }
     return true
   })
+  // console.log(accessedRouters);
   return accessedRouters
 }
 

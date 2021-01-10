@@ -6,25 +6,22 @@
       :isActive="sidebar.opened"
     ></hamburger>
     <breadcrumb></breadcrumb>
+    <el-button @click="getdatabytoken">通过token拿数据</el-button>
+    <el-button @click="getMenu">测试路由菜单</el-button>
     <div class="right-menu">
-      <el-dropdown
-        class="avatar-container right-menu-item hover-effect"
-        trigger="click"
-        size="medium"
-      >
-        <div class="avatar-wrapper">
-          {{ getinfo.Name }}
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
-            <el-dropdown-item> 首 页 </el-dropdown-item>
-          </router-link>
-          <router-link to="/changePwdIndex">
-            <el-dropdown-item> 修改密码 </el-dropdown-item>
-          </router-link>
-        </el-dropdown-menu>
-      </el-dropdown>
+      <el-tooltip content="返回首页" placement="bottom" effect="dark">
+        <el-button
+          @click="backHome"
+          icon="el-icon-house"
+          style="margin-right: 10px"
+          class="btnClass"
+        ></el-button>
+      </el-tooltip>
+
+      <span v-if="getinfo" class="btnClass">
+        {{ getinfo.Name }}
+      </span>
+      <el-button v-else @click="login" class="btnClass">登录</el-button>
       <div class="partition right-menu-item"></div>
       <el-tooltip
         content="退 出"
@@ -45,38 +42,51 @@
 import { mapGetters } from "vuex";
 import { getInfos } from "@/utils/auth";
 import Hamburger from "@/components/Hamburger";
-import Breadcrumb from '@/components/Breadcrumb'
+import Breadcrumb from "@/components/Breadcrumb";
 export default {
   components: {
     Hamburger,
-    Breadcrumb
+    Breadcrumb,
   },
   data() {
-    return {
-      layout: true,
-    };
+    return {};
   },
   computed: {
-    ...mapGetters(["sidebar", "avatar", "name", "subject", "device"]),
+    ...mapGetters(["sidebar"]),
     getinfo() {
-      return JSON.parse(getInfos());
+      if (getInfos()) {
+        return JSON.parse(getInfos());
+      } else {
+        return "";
+      }
     },
   },
+  mounted() {},
   methods: {
-    // subject(name) {
-    //   this.$store.dispatch('setSubject', name).then(() => {
-    //     // location.reload() // 为了重新实例化vue-router对象 避免bug
-    //   })
-    // },
-    changePwd() {},
     toggleSideBar() {
-      console.log('11');
       this.$store.dispatch("ToggleSideBar");
     },
     logout() {
       this.$store.dispatch("FedLogOut").then(() => {
         location.reload(); // 为了重新实例化vue-router对象 避免bug
       });
+    },
+    login() {
+      this.$router.push("/login");
+    },
+    getdatabytoken() {
+      this.$store.dispatch("GetInfo").then((res) => {
+        console.log(res);
+      });
+    },
+    getMenu() {
+      this.$store.dispatch("UserMenu").then((res) => {
+        console.log(res);
+      });
+    },
+    backHome() {
+      // 编程式导航
+      this.$router.push("/welcome");
     },
   },
 };
@@ -127,20 +137,13 @@ export default {
     float: left;
   }
 
-  .errLog-container {
-    display: inline-block;
-    vertical-align: top;
-  }
-
   .right-menu {
     float: right;
     height: 100%;
     line-height: 50px;
-
     &:focus {
       outline: none;
     }
-
     .right-menu-item {
       display: inline-block;
       padding: 0 8px;
@@ -158,27 +161,9 @@ export default {
         }
       }
     }
-
-    .avatar-container {
-      margin-right: 15px;
-      .avatar-wrapper {
-        position: relative;
-
-        .user-avatar {
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 20px;
-          font-size: 12px;
-        }
-      }
+    .btnClass {
+      vertical-align: text-bottom;
+      margin-bottom: 4px;
     }
   }
 }

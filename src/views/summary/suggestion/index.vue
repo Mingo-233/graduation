@@ -1,12 +1,6 @@
 <template>
   <div v-title data-title="反馈建议" class="suggestion">
-    <div class="head">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>分析结论</el-breadcrumb-item>
-        <el-breadcrumb-item>反馈建议</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
+    <div class="head"></div>
     <div class="body">
       <h1 class="title">反馈建议区</h1>
       <el-row :gutter="50">

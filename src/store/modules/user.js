@@ -39,6 +39,24 @@ const user = {
                         reject('getInfo: roles must be a non-null array !')
                     }
                     setInfos(Data.info)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error)
+                })
+            })
+        },
+        // 获取菜单
+        UserMenu({ commit, state }) {
+            return new Promise((resolve, reject) => {
+                getMenu(state.token).then(response => {
+                    console.log(response);
+                    let Data = response.data
+                    if (!Data) {
+                        reject('getInfo: roles must be a non-null array !')
+                    }
+                    resolve({ routers: Data })
+                }).catch(error => {
+                    reject(error)
                 })
             })
         },
