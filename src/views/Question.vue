@@ -1,10 +1,5 @@
 <template>
   <div class="box" v-title data-title="问卷">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>采样问卷</el-breadcrumb-item>
-      <el-breadcrumb-item>问卷详情</el-breadcrumb-item>
-    </el-breadcrumb>
     <div class="content">
       <h1 class="title">请选择下面模块开始测试</h1>
       <div class="btns">

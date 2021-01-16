@@ -19,8 +19,8 @@
         <!-- 一级菜单模板区域 -->
         <template slot="title">
           <!-- 图标 -->
-          <!-- <i :class="item.meta.icon"></i> -->
-          <i class="el-icon-menu"></i>
+          <i :class="item.meta.icon"></i>
+          <!-- <i class="el-icon-menu"></i> -->
           <!-- 文字 -->
           <span>{{ item.meta.title }}</span>
         </template>

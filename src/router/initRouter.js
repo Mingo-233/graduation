@@ -1,6 +1,18 @@
 // import Layout from '@/layout'
 
 const initRouters = [
+    // {
+    //     name: '首页',
+    //     component: 'Layout',
+    //     path: '/',
+    //     id: '1000',
+    //     meta: {
+    //         icon: 'el-icon-notebook-1',
+    //         title: '首页'
+    //     },
+    //     children: [
+    //     ]
+    // },
     {
         name: '采样问卷',
         component: 'Layout',
