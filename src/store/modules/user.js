@@ -50,7 +50,7 @@ const user = {
             return new Promise((resolve, reject) => {
                 getMenu(state.token).then(response => {
                     console.log(response);
-                    let Data = response.data
+                    let Data = response.data.menuName
                     if (!Data) {
                         reject('getInfo: roles must be a non-null array !')
                     }
@@ -65,6 +65,7 @@ const user = {
             return new Promise((resolve, reject) => {
                 commit('SET_TOKEN', '')
                 removeToken()
+                removeInfos()
                 resolve()
             })
         }

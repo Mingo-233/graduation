@@ -76,7 +76,6 @@ export function get(url, params = {}) {
     return new Promise((resolve, reject) => {
         server.get(url, { params: params })
             .then((response) => {
-                console.log(response);
                 resolve(response)
             })
             .catch((err) => {

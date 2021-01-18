@@ -6,17 +6,15 @@
       :isActive="sidebar.opened"
     ></hamburger>
     <breadcrumb></breadcrumb>
-    <el-button @click="getdatabytoken">通过token拿数据</el-button>
-    <el-button @click="getMenu">测试路由菜单</el-button>
     <div class="right-menu">
-      <el-tooltip content="返回首页" placement="bottom" effect="dark">
+      <!-- <el-tooltip content="返回首页" placement="bottom" effect="dark">
         <el-button
           @click="backHome"
           icon="el-icon-house"
           style="margin-right: 10px"
           class="btnClass"
         ></el-button>
-      </el-tooltip>
+      </el-tooltip> -->
 
       <span v-if="getinfo" class="btnClass">
         {{ getinfo.Name }}
@@ -73,16 +71,6 @@ export default {
     },
     login() {
       this.$router.push("/login");
-    },
-    getdatabytoken() {
-      this.$store.dispatch("GetInfo").then((res) => {
-        console.log(res);
-      });
-    },
-    getMenu() {
-      this.$store.dispatch("UserMenu").then((res) => {
-        console.log(res);
-      });
     },
     backHome() {
       // 编程式导航

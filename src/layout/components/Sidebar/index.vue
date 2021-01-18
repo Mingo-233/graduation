@@ -11,6 +11,9 @@
       :default-active="$route.path"
       :collapse="isCollapse"
     >
+      <el-menu-item index="/welcome">
+        <i class="el-icon-menu"></i>首页</el-menu-item
+      >
       <el-submenu
         :index="item.path + ''"
         v-for="item in permission_routes"
@@ -76,11 +79,11 @@ export default {
     //   console.log(this.activePath);
     // },
   },
-  created() {
-    console.log("sidebaritem test");
-    console.log(this.permission_routes);
-  },
+  created() {},
 };
 </script>
-<style lang="scss">
+<style lang="less">
+.el-menu-item-group__title {
+  padding: 0;
+}
 </style>

@@ -44,7 +44,7 @@
               >
                 登 录
               </el-button>
-              <el-button @click="test">testToken</el-button>
+              <el-button @click="test">testlogin</el-button>
             </el-col>
           </el-row>
         </el-form-item>
@@ -69,8 +69,8 @@ export default {
       redirect: undefined,
       loading: false,
       loginForm: {
-        username: "admin",
-        password: "qwer1",
+        username: "Admin",
+        password: "qwer",
       },
       show: false,
       isLogin: true,
@@ -117,17 +117,8 @@ export default {
       });
     },
     async test() {
-      const params = {
-        username: "admin",
-        password: "qwer12",
-      };
-      const { data } = await this.$post("/login", this.$Qs.stringify(params));
-      if (data.status === 0) {
-        this.$message({
-          message: data.msg,
-          type: "warning",
-        });
-      }
+      const data = await this.$get("/login/loginTest");
+      console.log(data);
     },
   },
   mounted() {

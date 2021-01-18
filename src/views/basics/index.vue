@@ -16,7 +16,7 @@
         :filter-method="filterHandler"
       >
       </el-table-column>
-      <!-- <el-table-column prop="StudentID" label="学号"> </el-table-column> -->
+      <el-table-column prop="StudentID" label="学号"> </el-table-column>
       <el-table-column prop="profession" label="父母职业"></el-table-column>
       <el-table-column prop="GPA" label="绩点" :formatter="formatterGPA">
       </el-table-column>
