@@ -28,7 +28,10 @@ export default {
     drawLineGraph(id, data) {
       let _this = this;
       this.myChart = echarts.init(document.getElementById(id));
-      this.myChart.setOption(data);
+      /*chart.setOption(option, notMerge, lazyUpdate);
+      第二个参数为echart重绘后受否不要合并数据，默认是false 即合并
+      */
+      this.myChart.setOption(data, true);
       window.addEventListener("resize", function () {
         _this.myChart.resize();
       });

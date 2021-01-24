@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
 
-if (process.env.NODE_ENV === 'development') {
-    Vue.use(Vuex)
-}
+// if (process.env.NODE_ENV === 'development') {
+//     console.log('kaiqi vuex');
+//     Vue.use(Vuex)
+// }
+Vue.use(Vuex)
 const modulesFiles = require.context('./modules', true, /\.js$/)
 //console.log(modulesFiles.keys());
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
@@ -21,7 +23,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
     //console.log(modules);
     return modules
 }, {})
-const store = new Vuex.Store({
+const Store = new Vuex.Store({
     modules,
     //此时的modeles会有例如user这个值,user里面有status，mutations，actions这些属性，getters去调用这些属性
     getters
@@ -31,4 +33,4 @@ const store = new Vuex.Store({
     // }
 })
 
-export default store
+export default Store

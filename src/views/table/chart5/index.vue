@@ -20,51 +20,34 @@
         </svg>
         <span>数据分析报告</span>
       </div>
-      <div class="part">
-        <div class="content">
-          <h3>1专业认知</h3>
-          <div>
-            该雷达图分析了各专业学生对自身专业认知程度情况，可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该轴所对应的专业相关性认知程度越好。最高分值为3。
-          </div>
-          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
-          <major-search
-            url="analysis/analysis1"
-            Qnumber="Q9"
-            :optionData.sync="option"
-          ></major-search>
+      <div class="content">
+        <h3>1专业认知</h3>
+        <div>
+          该雷达图分析了各专业学生对自身专业认知程度情况，可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该轴所对应的专业相关性认知程度越好。最高分值为3。
         </div>
-        <div class="chart">
-          <chart-show :id="'main'" :data="option" class="radar"></chart-show>
+        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+      </div>
+      <div class="chart">
+        <chart-show :id="'main'" :data="option" class="radar"></chart-show>
+      </div>
+      <div class="content">
+        <h3>2专业途径</h3>
+        <div>
+          该饼图分析了当前学院下学生了解专业途径来源的占比，其中饼图中颜色越鲜艳的表面占比越大，通过左侧控制条可以筛选显示。
         </div>
       </div>
-      <div class="part">
-        <div class="content">
-          <h3>2专业途径</h3>
-          <div>
-            该饼图分析了当前学院下学生了解专业途径来源的占比，其中饼图中颜色越鲜艳的表面占比越大，通过左侧控制条可以筛选显示。
-          </div>
-        </div>
-        <div class="chart">
-          <chart-show :id="'main2'" :data="option2" class="pie"></chart-show>
-        </div>
+      <div class="chart">
+        <chart-show :id="'main2'" :data="option2" class="pie"></chart-show>
       </div>
-      <div class="part">
-        <div class="content">
-          <h3>3专业学情</h3>
-          <div>
-            该条形图分析了各专业学生在本专业的学习情况，可以通过选择不同专业来进行横向比较，条形图中某一轴长度越长，说明该轴所对应的专业学情反应情况越好。最高分值为100。
-          </div>
-          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
-          <major-search
-            url="analysis/analysis2"
-            Qnumber="Q10"
-            Type="bar"
-            :optionData.sync="option3"
-          ></major-search>
+      <div class="content">
+        <h3>3专业学情</h3>
+        <div>
+          该条形图分析了各专业学生在本专业的学习情况，可以通过选择不同专业来进行横向比较，条形图中某一轴长度越长，说明该轴所对应的专业学情反应情况越好。最高分值为100。
         </div>
-        <div class="chart">
-          <chart-show :id="'main3'" :data="option3" class="bar"></chart-show>
-        </div>
+        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+      </div>
+      <div class="chart">
+        <chart-show :id="'main3'" :data="option3" class="bar"></chart-show>
       </div>
     </div>
     <div class="footer">
@@ -81,11 +64,8 @@
 <script>
 var echarts = require("echarts");
 import chartShow from "@/components/chartShow";
-import { tableMixin } from "@/utils/tableMixin";
-import majorSearch from "@/components/Search";
 const _this = this;
 export default {
-  mixins: [tableMixin],
   data() {
     return {
       htmlTitle: "专业认知模块",
@@ -246,7 +226,7 @@ export default {
         legend: {
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
-            // 通信工程: false,
+            通信工程: false,
             机械电子工程: false,
           },
           top: 20,
@@ -301,7 +281,7 @@ export default {
   methods: {
     // Q9 雷达
     async getAnalysisData1() {
-      const { data: res1 } = await this.$get("analysis/analysis1Default");
+      const { data: res1 } = await this.$get("analysis/analysis1");
       this.option.series[0].data[0].value = res1.sumQ9;
       this.option.series[0].data[1].value = res1.sumQ9Wlw;
       this.option.series[0].data[2].value = res1.sumQ9Tx;
@@ -310,11 +290,12 @@ export default {
     },
     // Q10 条形
     async getAnalysisData2() {
-      const { data: res2 } = await this.$get("analysis/analysis2Default");
+      const { data: res2 } = await this.$get("analysis/analysis2");
       this.option3.series[0].data = res2.sumQ10;
       this.option3.series[1].data = res2.sumQ10Jxdz;
       this.option3.series[2].data = res2.sumQ10Tx;
       this.option3.series[3].data = res2.sumQ10Wlw;
+      console.log(res2);
     },
     // Q11 饼图
     async getAnalysisData3() {
@@ -326,9 +307,6 @@ export default {
     backTop() {
       var element = document.getElementById("pdfDom");
       element.scrollIntoView(true);
-    },
-    handle() {
-      console.log("wcns");
     },
   },
   // mounted 此时页面上的元素，已经被渲染完毕
@@ -348,7 +326,6 @@ export default {
   },
   components: {
     chartShow,
-    majorSearch,
   },
 };
 </script>
@@ -368,7 +345,8 @@ export default {
     }
     .content {
       text-indent: 2em;
-      padding: 0 15%;
+      padding-left: 20%;
+      padding-right: 20%;
       margin-bottom: 15px;
       overflow: hidden;
       .tips {
@@ -407,23 +385,6 @@ export default {
     align-items: center;
 
     margin-top: 20px;
-  }
-}
-//选择器组件
-.select {
-  text-indent: 0em;
-  margin-top: 20px;
-  .majorSelect {
-    //display: flex;
-    display: inline;
-    .el-select {
-      // flex: 5;
-      // width: 600px;
-      width: 80%;
-    }
-    .el-button {
-      // flex: 1;
-    }
   }
 }
 </style>

@@ -50,6 +50,24 @@ export const myMixin = {
                 "农业劳动者阶层",
                 "城市无业、失业和半失业人员阶层",
             ],
+            collegesName: [],
+            classesName: [],
         }
+    },
+    methods: {
+        async getCollegeName() {
+            const { data } = await this.$get('formData/collegeNames')
+            this.collegesName = data
+        },
+        async getClassesName(college) {
+            const { data } = await this.$get('formData/majorClasses', {
+                collegeName: college
+            })
+            this.Form.major = ''
+            this.classesName = data
+        }
+    },
+    mounted() {
+        this.getCollegeName()
     }
 }

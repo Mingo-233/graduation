@@ -2,11 +2,12 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store/index'
 import { getToken } from '@/utils/auth'
-
+import Qs from 'qs'
 
 // 创建axios实例
 const server = axios.create({
-    baseURL: 'http://localhost:3000/api/'
+    baseURL: process.env.VUE_APP_API_URL || '/api'
+    // baseURL: 'http://localhost:3000/api/'
 })
 // request拦截器
 server.interceptors.request.use(
@@ -74,7 +75,13 @@ server.interceptors.response.use(
 )
 export function get(url, params = {}) {
     return new Promise((resolve, reject) => {
-        server.get(url, { params: params })
+        server.get(url, {
+            params: params,
+            paramsSerializer: params => {
+                // return Qs.stringify(params, { indices: false })
+                return Qs.stringify(params, { arrayFormat: 'indices' })
+            }
+        })
             .then((response) => {
                 resolve(response)
             })

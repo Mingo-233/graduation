@@ -121,7 +121,7 @@
       overflow: hidden;
 
       &>.el-submenu__title {
-        padding: 0 !important;
+        // padding: 0 !important;
 
         .svg-icon {
           margin-left: 20px;
@@ -157,24 +157,24 @@
   }
 
   // mobile responsive
-  .mobile {
-    .main-container {
-      margin-left: 0px;
-    }
+  // .mobile {
+  //   .main-container {
+  //     margin-left: 0px;
+  //   }
 
-    .sidebar-container {
-      transition: transform .28s;
-      width: $sideBarWidth !important;
-    }
+  //   .sidebar-container {
+  //     transition: transform .28s;
+  //     width: $sideBarWidth !important;
+  //   }
 
-    &.hideSidebar {
-      .sidebar-container {
-        pointer-events: none;
-        transition-duration: 0.3s;
-        transform: translate3d(-$sideBarWidth, 0, 0);
-      }
-    }
-  }
+  //   &.hideSidebar {
+  //     .sidebar-container {
+  //       pointer-events: none;
+  //       transition-duration: 0.3s;
+  //       transform: translate3d(-$sideBarWidth, 0, 0);
+  //     }
+  //   }
+  // }
 
   .withoutAnimation {
 

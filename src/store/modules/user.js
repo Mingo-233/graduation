@@ -18,7 +18,6 @@ const user = {
             const username = userInfo.username.trim()
             return new Promise((resolve, reject) => {
                 login(username, userInfo.password).then(response => {
-                    console.log(response);
                     const data = response.data
                     setToken(data.token)
                     commit('SET_TOKEN', data.token)
@@ -36,7 +35,8 @@ const user = {
                     let Data = response.data
                     console.log(Data);
                     if (!Data.info) {
-                        reject('getInfo: roles must be a non-null array !')
+                        reject(Data.msg)
+                        // reject('getInfo: roles must be a non-null array !')
                     }
                     setInfos(Data.info)
                     resolve(response)

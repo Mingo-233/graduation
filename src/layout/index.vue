@@ -1,10 +1,10 @@
 <template>
   <div class="app-wrapper" :class="classObj">
-    <div
+    <!-- <div
       v-if="device === 'mobile' && sidebar.opened"
       class="drawer-bg"
       @click="handleClickOutside"
-    />
+    /> -->
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <div ref="navbar">
@@ -89,6 +89,8 @@ export default {
   },
   methods: {
     onresizeHeight() {
+      // console.log(this.$refs.navbar);
+      // console.log(this.$refs.footer);
       const navbarHeight = this.$refs.navbar.offsetHeight;
       const footerHeight = this.$refs.footer.offsetHeight;
       this.contentHeight =

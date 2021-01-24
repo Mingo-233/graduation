@@ -1,6 +1,6 @@
-// global transition css
+//globl transition css
 
-/* fade */
+/*fade*/
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.28s;
@@ -11,26 +11,37 @@
   opacity: 0;
 }
 
-/* fade-transform */
-.fade-transform-leave-active,
-.fade-transform-enter-active {
-  transition: all .5s;
+//globl transition css
+
+/*fade*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
 }
 
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+/*fade-transform*/
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .3s;
+}
 .fade-transform-enter {
   opacity: 0;
   transform: translateX(-30px);
 }
-
 .fade-transform-leave-to {
   opacity: 0;
   transform: translateX(30px);
 }
 
-/* breadcrumb transition */
+/*breadcrumb transition*/
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
-  transition: all .5s;
+  transition: all .1s;
 }
 
 .breadcrumb-enter,
@@ -40,9 +51,136 @@
 }
 
 .breadcrumb-move {
-  transition: all .5s;
+  transition: all .1s;
 }
 
 .breadcrumb-leave-active {
   position: absolute;
+}
+
+
+
+/*fade*/
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .1s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-move {
+  transition: all .1s;
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
+}
+
+.focus-line{
+  display: block;
+  width: 0px;
+  height: 1px;
+  background: #409EFF;
+  box-shadow: 1px 1px 2px rgba(64, 158, 255, .3)
+}
+.svg-container{
+  display: inline-block;
+  transition: color .15s ease-in-out;
+  -moz-transition: color .15s ease-in-out;
+  -webkit-transition: color .15s ease-in-out;
+  -o-transition: color .15s ease-in-out;
+}
+
+
+.material--active{
+  color: #409EFF !important;
+}
+.material-input__component.material--active {
+  .focus-line{
+    animation: focusInLine .15s linear forwards;
+  }
+}
+.focus-line.focus-out-line{
+  animation: focusOutLine .15s linear forwards;
+}
+
+.ball-scale-multiple {
+  position: relative;
+}
+.ball-scale-multiple > div:nth-child(2) {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s; }
+.ball-scale-multiple > div:nth-child(3) {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s; }
+.ball-scale-multiple > div {
+  background-color: #409EFF;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin: 2px;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  opacity: 0;
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
+  animation: ball-scale-multiple 1s 0s linear infinite; }
+
+//loading
+@-webkit-keyframes ball-scale-multiple {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0; }
+
+  5% {
+    opacity: 1; }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; } }
+
+@keyframes ball-scale-multiple {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0; }
+
+  5% {
+    opacity: 1; }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; } }
+
+@keyframes focusInLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+@keyframes focusOutLine {
+  from {
+    width: 100%;
+    opacity: 1;
+  }
+  to {
+    width: 0;
+    opacity: 0;
+  }
 }

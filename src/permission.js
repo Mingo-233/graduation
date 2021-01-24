@@ -11,7 +11,6 @@ NProgress.configure({ showSpinner: false, ease: 'ease', speed: 800 })
 router.beforeEach(async (to, form, next) => {
     NProgress.start()
     if (getToken()) {
-        console.log(to);
         if (to.path === '/login') {
             next({ path: '/' })
         } else {
@@ -21,7 +20,6 @@ router.beforeEach(async (to, form, next) => {
                     const { routers } = await store.dispatch('UserMenu')
                     console.log(routers);
                     const accessRoutes = await filterAsyncRouter(routers)
-                    console.log('generateRoutes');
                     console.log(accessRoutes);
                     store.dispatch('generateRoutes', accessRoutes).then(() => {
                         router.addRoutes(accessRoutes)
@@ -35,7 +33,6 @@ router.beforeEach(async (to, form, next) => {
                     NProgress.done()
                 }
             }
-            console.log('未填写的路由守卫配置');
             next()
         }
     }

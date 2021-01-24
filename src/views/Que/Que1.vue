@@ -62,18 +62,37 @@
             ></el-input>
           </el-form-item>
           <el-form-item prop="college" label="5您的学院" id="a5">
-            <el-input
+            <el-select
               v-model="Form.college"
-              placeholder="请输入内容"
-              @change="handleSelect('college', 5)"
-            ></el-input>
+              placeholder="请选择学院"
+              @change="
+                handleSelect('college', 5);
+                getClassesName(Form.college);
+              "
+            >
+              <el-option
+                v-for="item in collegesName"
+                :key="item"
+                :label="item"
+                :value="item"
+              >
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item prop="major" label="6您的专业" id="a6">
-            <el-input
+            <el-select
               v-model="Form.major"
-              placeholder="请输入内容"
+              placeholder="请选择专业"
               @change="handleSelect('major', 6)"
-            ></el-input>
+            >
+              <el-option
+                v-for="item in classesName"
+                :key="item"
+                :label="item"
+                :value="item"
+              >
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item prop="StudentID" label="7您的学号" id="a7">
             <el-input

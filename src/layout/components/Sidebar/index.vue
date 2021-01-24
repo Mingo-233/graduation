@@ -12,7 +12,7 @@
       :collapse="isCollapse"
     >
       <el-menu-item index="/welcome">
-        <i class="el-icon-menu"></i>首页</el-menu-item
+        <i class="el-icon-menu"></i><span>首页</span> </el-menu-item
       >
       <el-submenu
         :index="item.path + ''"
@@ -82,8 +82,8 @@ export default {
   created() {},
 };
 </script>
-<style lang="less">
-.el-menu-item-group__title {
-  padding: 0;
+<style lang="less" scoped>
+/deep/.el-menu-item-group__title {
+  padding: 0 0 0 20px !important;
 }
 </style>

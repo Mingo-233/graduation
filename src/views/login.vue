@@ -44,7 +44,6 @@
               >
                 登 录
               </el-button>
-              <el-button @click="test">testlogin</el-button>
             </el-col>
           </el-row>
         </el-form-item>
@@ -107,6 +106,7 @@ export default {
                 message: res.data.msg,
                 type: "success",
               });
+              console.log(this.redirect);
               this.$router.push({ path: this.redirect || "/" });
             })
             .catch(() => {
@@ -115,10 +115,6 @@ export default {
             });
         }
       });
-    },
-    async test() {
-      const data = await this.$get("/login/loginTest");
-      console.log(data);
     },
   },
   mounted() {
@@ -179,6 +175,26 @@ export default {
     transform: translateX(0);
     .login-form {
       opacity: 1;
+    }
+    .login-loading {
+      width: 155px;
+      height: 115px;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      .loader-inner {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto;
+      }
+      .loading-text {
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: #909399;
+      }
     }
   }
   .tips {

@@ -1,7 +1,20 @@
 <template>
-  <div class="basics">
+  <div class="basics" v-title data-title="基础信息">
     <div class="title">数据样本的基础信息</div>
-    <el-table :data="tableData" stripe border style="width: 100%">
+    <!-- <span>专业</span> -->
+    <el-input
+      v-model="search"
+      size="mini"
+      placeholder="输入关键字筛选专业"
+      prefix-icon="el-icon-search"
+      style="width: 20%; margin-bottom: 20px"
+    />
+    <el-table
+      :data="tableData.filter((data) => !search || data.major.includes(search))"
+      stripe
+      border
+      style="width: 100%"
+    >
       <el-table-column type="index" label="#" width="30px"></el-table-column>
       <el-table-column prop="sex" label="性别" width="50px"> </el-table-column>
       <el-table-column prop="age" label="年龄" width="50px"> </el-table-column>
@@ -9,12 +22,9 @@
       </el-table-column>
       <el-table-column prop="school" label="学校"> </el-table-column>
       <el-table-column prop="college" label="学院"> </el-table-column>
-      <el-table-column
-        prop="major"
-        label="专业"
-        :filters="filtersArray"
-        :filter-method="filterHandler"
-      >
+      <el-table-column prop="major" label="专业">
+        <!-- :filters="filtersArray"
+        :filter-method="filterHandler" -->
       </el-table-column>
       <el-table-column prop="StudentID" label="学号"> </el-table-column>
       <el-table-column prop="profession" label="父母职业"></el-table-column>
@@ -48,6 +58,7 @@ export default {
   data() {
     return {
       tableData: [],
+      search: "",
       formatterGPA: (row, column, cellValue, index) => {
         let value = row.GPA.toString();
         let result = "";
