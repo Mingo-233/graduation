@@ -52,7 +52,7 @@
             </div>
             <div>
               <span>{{ toThousandFilters(allCount.sampleNumber) }}</span>
-              <p>有效样本数据</p>
+              <p>样本数量</p>
             </div>
           </div>
         </div>

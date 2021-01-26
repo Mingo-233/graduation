@@ -79,13 +79,10 @@
 </template>
 
 <script>
-var echarts = require("echarts");
 import chartShow from "@/components/chartShow";
-import { tableMixin } from "@/utils/tableMixin";
 import majorSearch from "@/components/Search";
 const _this = this;
 export default {
-  mixins: [tableMixin],
   data() {
     return {
       htmlTitle: "专业认知模块",
@@ -353,77 +350,5 @@ export default {
 };
 </script>
 
-<style lang="less" >
-.chart1Mode {
-  padding: 10px;
-  .body {
-    overflow: hidden;
-    .topic {
-      text-align: center;
-      margin-bottom: 20px;
-      > span {
-        font-size: 24px;
-        vertical-align: bottom;
-      }
-    }
-    .content {
-      text-indent: 2em;
-      padding: 0 15%;
-      margin-bottom: 15px;
-      overflow: hidden;
-      .tips {
-        color: rgb(163, 164, 165);
-        font-size: 14px;
-        padding-bottom: 10px;
-        padding-left: 5px;
-      }
-    }
-    .chart {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px 0;
-
-      .radar {
-        height: 500px;
-        width: 50%;
-        // box-sizing: border-box;
-        // border: black 1px solid;
-      }
-      .pie {
-        height: 500px;
-        width: 50%;
-      }
-      .bar {
-        height: 350px;
-        width: 70% !important;
-        // border: black 1px solid;
-      }
-    }
-  }
-  .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 20px;
-  }
-}
-//选择器组件
-.select {
-  text-indent: 0em;
-  margin-top: 20px;
-  .majorSelect {
-    //display: flex;
-    display: inline;
-    .el-select {
-      // flex: 5;
-      // width: 600px;
-      width: 80%;
-    }
-    .el-button {
-      // flex: 1;
-    }
-  }
-}
+<style lang="less">
 </style>

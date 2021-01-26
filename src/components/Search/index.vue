@@ -101,6 +101,14 @@ export default {
         percentage: 4,
       };
       const { data } = await this.$get(url, params);
+      console.log(data);
+      if (data.status === 0) {
+        this.$message({
+          type: "warning",
+          message: data.msg,
+        });
+        return;
+      }
       //去除该属性双向绑定特性
       params.classes = JSON.parse(JSON.stringify(params.classes));
       params.classes.unshift("学院平均指数");
@@ -129,6 +137,21 @@ export default {
         });
         this.optionData.legend.data = params.classes;
         this.optionData.series[0].data = settingOption;
+        this.optionData.legend.selected = {};
+      } else if (this.Type === "polar") {
+        let settingOption = params.classes.map((item, index) => {
+          return {
+            name: item,
+            type: "bar",
+            data: data[index],
+            coordinateSystem: "polar",
+            animation: true,
+            //数据堆叠
+            stack: "a",
+          };
+        });
+        this.optionData.legend.data = params.classes;
+        this.optionData.series = settingOption;
         this.optionData.legend.selected = {};
       }
     },

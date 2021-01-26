@@ -198,7 +198,7 @@
               ></el-checkbox>
               <el-checkbox label="功能满足实践需求" name="type"></el-checkbox>
               <el-checkbox
-                label="有良好的管理与运行维护机制，方便使用)"
+                label="有良好的管理与运行维护机制，方便使用"
                 name="type"
               ></el-checkbox>
               <el-checkbox label="设备或材料更新及时" name="type"></el-checkbox>

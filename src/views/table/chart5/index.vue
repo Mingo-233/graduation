@@ -1,5 +1,5 @@
 <template>
-  <div v-title data-title="专业认知模块" class="chart1Mode" id="pdfDom">
+  <div v-title data-title="在校体验模块" class="chart1Mode" id="pdfDom">
     <div class="body">
       <div class="topic">
         <svg
@@ -20,34 +20,123 @@
         </svg>
         <span>数据分析报告</span>
       </div>
-      <div class="content">
-        <h3>1专业认知</h3>
-        <div>
-          该雷达图分析了各专业学生对自身专业认知程度情况，可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该轴所对应的专业相关性认知程度越好。最高分值为3。
+      <div class="part">
+        <div class="content">
+          <h3>1本校校园环境满意度</h3>
+          <div>
+            该雷达图分析了各专业学生对本校校园环境的满意程度情况，可以通过选择不同专业来进行比较，雷达图中某一轴覆盖面积越大，说明该专业对该学校校园环境满意程度越高。最高分值为4。
+          </div>
+          <div>可自由选择查看不同学院下不同专业的数据分析情况。</div>
+          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+          <major-search
+            url="analysis/analysisRadarForm5"
+            Qnumber="Q36"
+            :optionData.sync="option"
+          ></major-search>
         </div>
-        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
-      </div>
-      <div class="chart">
-        <chart-show :id="'main'" :data="option" class="radar"></chart-show>
-      </div>
-      <div class="content">
-        <h3>2专业途径</h3>
-        <div>
-          该饼图分析了当前学院下学生了解专业途径来源的占比，其中饼图中颜色越鲜艳的表面占比越大，通过左侧控制条可以筛选显示。
+        <div class="chart">
+          <chart-show :id="'main'" :data="option" class="radar"></chart-show>
         </div>
       </div>
-      <div class="chart">
-        <chart-show :id="'main2'" :data="option2" class="pie"></chart-show>
-      </div>
-      <div class="content">
-        <h3>3专业学情</h3>
-        <div>
-          该条形图分析了各专业学生在本专业的学习情况，可以通过选择不同专业来进行横向比较，条形图中某一轴长度越长，说明该轴所对应的专业学情反应情况越好。最高分值为100。
+      <div class="part">
+        <div class="content">
+          <h3>2本校学生工作满意度</h3>
+          <div>
+            该雷达图分析了各专业学生对本校学生工作的满意程度情况，可以通过选择不同专业来进行比较，雷达图中某一轴覆盖面积越大，说明该专业对该学校学生工作满意程度越高。最高分值为4。
+          </div>
+          <div>可自由选择查看不同学院下不同专业的数据分析情况。</div>
+          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+          <major-search
+            url="analysis/analysisRadarForm5"
+            Qnumber="Q37"
+            :optionData.sync="option2"
+          ></major-search>
         </div>
-        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+        <div class="chart">
+          <chart-show :id="'main2'" :data="option2" class="radar"></chart-show>
+        </div>
       </div>
-      <div class="chart">
-        <chart-show :id="'main3'" :data="option3" class="bar"></chart-show>
+      <div class="part">
+        <div class="content">
+          <h3>3本校学生管理服务满意度</h3>
+          <div>
+            该雷达图分析了各专业学生对本校学生管理服务的满意程度情况，可以通过选择不同专业来进行比较，雷达图中某一轴覆盖面积越大，说明该专业对该学校学生管理服务满意程度越高。最高分值为4。
+          </div>
+          <div>可自由选择查看不同学院下不同专业的数据分析情况。</div>
+          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+          <major-search
+            url="analysis/analysisRadarForm5"
+            Qnumber="Q38"
+            :optionData.sync="option3"
+          ></major-search>
+        </div>
+        <div class="chart">
+          <chart-show :id="'main3'" :data="option3" class="radar"></chart-show>
+        </div>
+      </div>
+      <div class="part">
+        <div class="content">
+          <h3>4本校生活服务满意度</h3>
+          <div>
+            该雷达图分析了各专业学生对本校生活服务的满意程度情况，可以通过选择不同专业来进行比较，雷达图中某一轴覆盖面积越大，说明该专业对该学校生活服务满意程度越高。最高分值为4。
+          </div>
+          <div>可自由选择查看不同学院下不同专业的数据分析情况。</div>
+          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+          <major-search
+            url="analysis/analysisRadarForm5"
+            Qnumber="Q39"
+            :optionData.sync="option4"
+          ></major-search>
+        </div>
+        <div class="chart">
+          <chart-show :id="'main4'" :data="option4" class="radar"></chart-show>
+        </div>
+      </div>
+      <div class="part">
+        <div class="content">
+          <h3>5本校提供的教室及教学设备进行评价</h3>
+          <div>
+            分析了学生对本校提供的教室及教学设备的评价，条形图中某一轴长度越长，说明学生对此类评价认同度越高。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main5'"
+            :data="option5"
+            class="chartbar2"
+          ></chart-show>
+        </div>
+      </div>
+      <div class="part">
+        <div class="content">
+          <h3>6本校提供的实验室及设备进行评价</h3>
+          <div>
+            分析了学生对本校提供的实验室及设备的评价，条形图中某一轴长度越长，说明学生对此类评价认同度越高。
+          </div>
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main6'"
+            :data="option6"
+            class="chartbar2"
+          ></chart-show>
+        </div>
+      </div>
+      <div class="part">
+        <div class="content">
+          <h3>7本校提供的计算机、网络及图书资源进行评价</h3>
+          <div>
+            分析了学生对本校提供的计算机、网络及图书资源的评价，条形图中某一轴长度越长，说明学生对此类评价认同度越高。
+          </div>
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main7'"
+            :data="option7"
+            class="chartbar2"
+          ></chart-show>
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -64,14 +153,15 @@
 <script>
 var echarts = require("echarts");
 import chartShow from "@/components/chartShow";
+import majorSearch from "@/components/Search";
 const _this = this;
 export default {
   data() {
     return {
-      htmlTitle: "专业认知模块",
+      htmlTitle: "在校体验模块",
       option: {
         title: {
-          text: "专业认知",
+          text: "校园环境满意度",
           subtext: "数据来自本网站系统数据采集",
           top: 0,
           left: 0,
@@ -91,11 +181,19 @@ export default {
         radar: [
           {
             indicator: [
-              { name: "专业的就业及发展", max: 3, color: "rgb(194,53,49)" },
-              { name: "专业的知识体系", max: 3, color: "rgb(194,53,49)" },
-              { name: "专业技能要求", max: 3, color: "rgb(194,53,49)" },
-              { name: "专业职业素养要求", max: 3, color: "rgb(194,53,49)" },
-              { name: "专业的课程设置", max: 3, color: "rgb(194,53,49)" },
+              { name: "校园自然环境", max: 4, color: "rgb(194,53,49)" },
+              { name: "校风学风", max: 4, color: "rgb(194,53,49)" },
+              { name: "宿舍环境", max: 4, color: "rgb(194,53,49)" },
+              { name: "图书馆环境", max: 4, color: "rgb(194,53,49)" },
+              { name: "教室设备", max: 4, color: "rgb(194,53,49)" },
+              { name: "实验室", max: 4, color: "rgb(194,53,49)" },
+              {
+                name: "计算机、网络及图书资源",
+                max: 4,
+                color: "rgb(194,53,49)",
+              },
+              { name: "自习教室的数量", max: 4, color: "rgb(194,53,49)" },
+              { name: "文娱体育设施", max: 4, color: "rgb(194,53,49)" },
             ],
             center: ["50%", "50%"],
             radius: 150,
@@ -110,7 +208,66 @@ export default {
             areaStyle: {},
             data: [
               {
-                value: [3, 3, 2, 1, 1],
+                value: [3, 3, 2, 1, 1, 2, 2, 2, 2],
+                name: "平均指数",
+              },
+              {
+                value: [2, 3, 2, 2, 2, 3, 3, 2, 2],
+                name: "物联网工程",
+              },
+              {
+                value: [1, 3, 2, 2, 1, 2, 1, 1, 3],
+                name: "通信工程",
+              },
+              {
+                value: [1, 1, 1, 1, 1, 2, 2, 2, 2],
+                name: "机械电子工程",
+              },
+            ],
+          },
+        ],
+      },
+      option2: {
+        title: {
+          text: "学生工作满意度",
+          subtext: "数据来自本网站系统数据采集",
+          top: 0,
+          left: 0,
+        },
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          left: "center",
+          top: 10,
+          data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
+          selected: {
+            通信工程: false,
+            机械电子工程: false,
+          },
+        },
+        radar: [
+          {
+            indicator: [
+              { name: "本专业辅导员工作", max: 4, color: "rgb(194,53,49)" },
+              { name: "社团活动", max: 4, color: "rgb(194,53,49)" },
+              { name: "就业指导", max: 4, color: "rgb(194,53,49)" },
+              { name: "心理健康教育", max: 4, color: "rgb(194,53,49)" },
+            ],
+            center: ["50%", "50%"],
+            radius: 150,
+          },
+        ],
+        series: [
+          {
+            type: "radar",
+            tooltip: {
+              trigger: "item",
+            },
+            areaStyle: {},
+            data: [
+              {
+                value: [3, 3, 2, 1, 2],
                 name: "平均指数",
               },
               {
@@ -129,180 +286,259 @@ export default {
           },
         ],
       },
-      option2: {
-        backgroundColor: "#2c343c",
-        title: {
-          text: "了解专业的途径",
-          left: "center",
-          top: 20,
-          textStyle: {
-            color: "#ccc",
-          },
-        },
-        legend: {
-          data: [
-            "与专业老师交流",
-            "高年级在校生介绍",
-            "专业认知讲座与课程",
-            "专业相关网站和论坛",
-            "专业相关书籍",
-            "与校外专业人士交流",
-          ],
-          orient: "vertical",
-          left: 10,
-          top: 0,
-          textStyle: {
-            color: "#ccc",
-          },
-        },
-        tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)",
-        },
-        visualMap: {
-          show: true,
-          text: ["高", "低"],
-          min: 0,
-          max: 10,
-          color: ["red", "white"],
-          // inRange: {
-          //   colorLightness: [0.1, 0.9],
-          // },
-          left: "left",
-          top: "bottom",
-          calculable: true,
-        },
-        series: [
-          {
-            name: "访问来源",
-            type: "pie",
-            radius: "50%",
-            center: ["50%", "60%"],
-            data: [
-              { value: 1, name: "与专业老师交流" },
-              { value: 1, name: "高年级在校生介绍" },
-              { value: 1, name: "专业认知讲座与课程" },
-              { value: 1, name: "专业相关网站和论坛" },
-              { value: 1, name: "专业相关书籍" },
-              { value: 1, name: "与校外专业人士交流" },
-            ],
-            roseType: "radius",
-            label: {
-              color: "rgba(255, 255, 255, 0.8)",
-            },
-            labelLine: {
-              lineStyle: {
-                color: "rgba(255, 255, 255, 0.3)",
-              },
-              smooth: 0.2,
-              length: 10,
-              length2: 20,
-            },
-            itemStyle: {
-              color: "#c23531",
-              shadowBlur: 200,
-              shadowColor: "rgba(0, 0, 0, 0.5)",
-            },
-            animationType: "scale",
-            animationEasing: "elasticOut",
-            animationDelay: function (idx) {
-              return Math.random() * 200;
-            },
-          },
-        ],
-      },
       option3: {
         title: {
-          text: "在本专业学习情况",
-          subtext: "数据来自本网站系统数据采集  ",
+          text: "学生管理服务满意度",
+          subtext: "数据来自本网站系统数据采集",
           top: 0,
+          left: 0,
         },
         tooltip: {
           trigger: "axis",
-          axisPointer: {
-            type: "shadow",
-          },
         },
         legend: {
+          left: "center",
+          top: 10,
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
             通信工程: false,
             机械电子工程: false,
           },
-          top: 20,
         },
-        grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "3%",
-          containLabel: true,
+        radar: [
+          {
+            indicator: [
+              { name: "课程考核与成绩管理", max: 4, color: "rgb(194,53,49)" },
+              { name: "转/休/复/退学的处理", max: 4, color: "rgb(194,53,49)" },
+              { name: "学生资助", max: 4, color: "rgb(194,53,49)" },
+              { name: "奖励/处分/申诉", max: 4, color: "rgb(194,53,49)" },
+            ],
+            center: ["50%", "50%"],
+            radius: 150,
+            shape: "circle",
+          },
+        ],
+        series: [
+          {
+            type: "radar",
+            tooltip: {
+              trigger: "item",
+            },
+            areaStyle: {},
+            data: [
+              {
+                value: [3, 3, 2, 1],
+                name: "平均指数",
+              },
+              {
+                value: [2, 3, 2, 2],
+                name: "物联网工程",
+              },
+              {
+                value: [1, 3, 2, 2],
+                name: "通信工程",
+              },
+              {
+                value: [1, 1, 1, 1],
+                name: "机械电子工程",
+              },
+            ],
+          },
+        ],
+      },
+      option4: {
+        title: {
+          text: "生活服务满意度",
+          subtext: "数据来自本网站系统数据采集",
+          top: 0,
+          left: 0,
         },
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          left: "center",
+          top: 10,
+          data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
+          selected: {
+            通信工程: false,
+            机械电子工程: false,
+          },
+        },
+        radar: [
+          {
+            indicator: [
+              { name: "食堂服务与饭菜质量", max: 4, color: "rgb(194,53,49)" },
+              {
+                name: "转/休/复/住宿条件与管理",
+                max: 4,
+                color: "rgb(194,53,49)",
+              },
+              { name: "洗浴条件与管理", max: 4, color: "rgb(194,53,49)" },
+              {
+                name: "奖励/学校的医疗服务/申诉",
+                max: 4,
+                color: "rgb(194,53,49)",
+              },
+            ],
+            center: ["50%", "50%"],
+            radius: 150,
+            shape: "circle",
+          },
+        ],
+        series: [
+          {
+            type: "radar",
+            tooltip: {
+              trigger: "item",
+            },
+            areaStyle: {},
+            data: [
+              {
+                value: [3, 3, 2, 1],
+                name: "平均指数",
+              },
+              {
+                value: [2, 3, 2, 2],
+                name: "物联网工程",
+              },
+              {
+                value: [1, 3, 2, 2],
+                name: "通信工程",
+              },
+              {
+                value: [1, 1, 1, 1],
+                name: "机械电子工程",
+              },
+            ],
+          },
+        ],
+      },
+      option5: {
         xAxis: {
-          type: "value",
-          boundaryGap: [0, 0.01],
-        },
-        yAxis: {
           type: "category",
           data: [
-            "关注本专业相关的行业热点",
-            "个性特征适合在本专业学习",
-            "学习过程充满乐趣",
-            "积极学习本专业知识",
-            "重选专业，仍会选择本专业",
-            "愿意选择与专业对口的工作",
-            "对本专业未来发展有信心",
+            "数量满足教学需求",
+            "功能满足教学需求",
+            "管理与维护方便使用",
+            "设施更新及时",
+            "以上均不满足",
           ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
+        },
+        yAxis: {
+          type: "value",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ",
         },
         series: [
           {
-            name: "平均指数",
+            data: [120, 200, 150, 80, 66],
             type: "bar",
-            data: [30, 9, 4, 7, 4, 3, 10],
-          },
-          {
-            name: "物联网工程",
-            type: "bar",
-            data: [3, 9, 4, 7, 4, 3, 10],
-          },
-          {
-            name: "通信工程",
-            type: "bar",
-            data: [3, 9, 4, 7, 4, 3, 10],
-          },
-          {
-            name: "机械电子工程",
-            type: "bar",
-            data: [3, 9, 4, 7, 4, 3, 10],
+            barMaxWidth: "50px",
+            name: "社会活动教育",
           },
         ],
+        color: ["#61a0a8"],
+      },
+      option6: {
+        xAxis: {
+          type: "category",
+          data: [
+            "数量满足实践需求",
+            "功能满足实践需求",
+            "管理与维护方便使用",
+            "设备或材料更新及时",
+            "以上均不满足",
+          ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
+        },
+        yAxis: {
+          type: "value",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ",
+        },
+        series: [
+          {
+            data: [120, 200, 150, 80, 66],
+            type: "bar",
+            barMaxWidth: "50px",
+            name: "实验室及设备评价",
+          },
+        ],
+        color: ["#ca8622"],
+      },
+      option7: {
+        xAxis: {
+          type: "category",
+          data: [
+            "满足日常学习需求",
+            "管理规范",
+            "共享程度高",
+            "设备及资源更新及时",
+            "以上均不满足",
+          ],
+          axisLabel: {
+            interval: 0, //强制文字产生间隔
+            // rotate: 20, //文字逆时针旋转
+            textStyle: {
+              //文字样式
+              color: "black",
+            },
+          },
+        },
+        yAxis: {
+          type: "value",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ",
+        },
+        series: [
+          {
+            data: [120, 200, 150, 80, 66],
+            type: "bar",
+            barMaxWidth: "50px",
+            name: "计算机、网络及图书资源评价",
+          },
+        ],
+        color: ["#bda29a"],
       },
     };
   },
   methods: {
-    // Q9 雷达
-    async getAnalysisData1() {
-      const { data: res1 } = await this.$get("analysis/analysis1");
-      this.option.series[0].data[0].value = res1.sumQ9;
-      this.option.series[0].data[1].value = res1.sumQ9Wlw;
-      this.option.series[0].data[2].value = res1.sumQ9Tx;
-      this.option.series[0].data[3].value = res1.sumQ9Jxdz;
-      console.log(res1);
+    // Q42 条形
+    async getAnalysisData42() {
+      const { data: res1 } = await this.$get("analysis/analysis42");
+      this.option5.series[0].data = res1;
     },
-    // Q10 条形
-    async getAnalysisData2() {
-      const { data: res2 } = await this.$get("analysis/analysis2");
-      this.option3.series[0].data = res2.sumQ10;
-      this.option3.series[1].data = res2.sumQ10Jxdz;
-      this.option3.series[2].data = res2.sumQ10Tx;
-      this.option3.series[3].data = res2.sumQ10Wlw;
+    // Q43 条形
+    async getAnalysisData43() {
+      const { data: res2 } = await this.$get("analysis/analysis43");
+      this.option6.series[0].data = res2;
       console.log(res2);
+      console.log(this.option6.series[0]);
     },
-    // Q11 饼图
-    async getAnalysisData3() {
-      const { data: res3 } = await this.$get("analysis/analysis3");
-      console.log(res3);
-      this.option2.visualMap.max = res3.length;
-      this.option2.series[0].data = res3;
+    // Q44 条形
+    async getAnalysisData44() {
+      const { data: res3 } = await this.$get("analysis/analysis44");
+      this.option7.series[0].data = res3;
     },
     backTop() {
       var element = document.getElementById("pdfDom");
@@ -310,22 +546,14 @@ export default {
     },
   },
   // mounted 此时页面上的元素，已经被渲染完毕
-  mounted: async function () {
-    await this.getAnalysisData1();
-    await this.getAnalysisData2();
-    await this.getAnalysisData3();
-    // // 3.基于准备好的dom，初始化echarts实例
-    // var myChart = echarts.init(document.getElementById("main"));
-    // var myChart2 = echarts.init(document.getElementById("main2"));
-    // // 4.指定图表的配置项和数据
-    // // 合并2份数据
-    // // const result = _.merge(res.data,this.options)
-    // // 5.使用刚指定的配置项和数据显示图表。
-    // myChart.setOption(this.option);
-    // myChart2.setOption(this.option2);
+  mounted() {
+    this.getAnalysisData42();
+    this.getAnalysisData43();
+    this.getAnalysisData44();
   },
   components: {
     chartShow,
+    majorSearch,
   },
 };
 </script>

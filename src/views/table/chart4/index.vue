@@ -20,41 +20,56 @@
         </svg>
         <span>数据分析报告</span>
       </div>
-      <div class="content">
-        <h3>1能力提升</h3>
-        <div>
-          分析了当前学院下不同专业学生在能力方面的提升情况。可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该方面能力提升越多。
+      <div class="part">
+        <div class="content">
+          <h3>1能力提升</h3>
+          <div>
+            分析了当前学院下不同专业学生在能力方面的提升情况。可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该方面能力提升越多。
+          </div>
+          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+          <major-search
+            url="analysis/analysisRadarForm4"
+            Qnumber="Q30"
+            :optionData.sync="option"
+          ></major-search>
         </div>
-        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
-      </div>
-      <div class="chart">
-        <chart-show :id="'main'" :data="option" class="chartRadar"></chart-show>
-      </div>
-      <div class="content">
-        <h3>2大学期间参与过的社会活动教育</h3>
-        <div>
-          分析了大学期间学生参与社会活动教育情况，条形图中某一轴长度越长，说明学生在该类型的社会活动参与越多。
+        <div class="chart">
+          <chart-show
+            :id="'main'"
+            :data="option"
+            class="chartRadar"
+          ></chart-show>
         </div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
       </div>
-      <div class="chart">
-        <chart-show
-          :id="'main2'"
-          :data="option2"
-          class="chartbar2"
-        ></chart-show>
+      <div class="part">
+        <div class="content">
+          <h3>2大学期间参与过的社会活动教育</h3>
+          <div>
+            分析了大学期间学生参与社会活动教育情况，条形图中某一轴长度越长，说明学生在该类型的社会活动参与越多。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main2'"
+            :data="option2"
+            class="chartbar2"
+          ></chart-show>
+        </div>
       </div>
-      <div class="content">
-        <h3>3社会活动教育帮助</h3>
-        <div>分析了大学生在大学期间参与社会活动教育带来的帮助。</div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
-      </div>
-      <div class="chart">
-        <chart-show
-          :id="'main3'"
-          :data="option3"
-          class="chartbar3"
-        ></chart-show>
+      <div class="part">
+        <div class="content">
+          <h3>3社会活动教育帮助</h3>
+          <div>分析了大学生在大学期间参与社会活动教育带来的帮助。</div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main3'"
+            :data="option3"
+            class="chartbar3"
+          ></chart-show>
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -69,22 +84,11 @@
 </template>
 
 <script>
-var echarts = require("echarts");
 import chartShow from "@/components/chartShow";
-import { animate } from "@/utils/index";
+import majorSearch from "@/components/Search";
 const _this = this;
 export default {
   data() {
-    var data = [
-      {
-        name: "同意",
-        value: 70,
-      },
-      {
-        name: "不同意",
-        value: 68,
-      },
-    ];
     return {
       htmlTitle: "德育与能力模块",
 
@@ -278,7 +282,7 @@ export default {
     },
     // Q30
     async getAnalysisData30() {
-      const { data: res1 } = await this.$get("analysis/analysis30");
+      const { data: res1 } = await this.$get("analysis/analysis30Default");
       this.option.series[0].data[0].value = res1.sumQ30;
       this.option.series[0].data[1].value = res1.sumQ30Wlw;
       this.option.series[0].data[2].value = res1.sumQ30Tx;
@@ -302,77 +306,44 @@ export default {
   },
   components: {
     chartShow,
+    majorSearch,
   },
 };
 </script>
 
 <style lang="less" >
-.chart1Mode {
-  padding: 10px;
-  .body {
-    overflow: hidden;
-    .topic {
-      text-align: center;
-      margin-bottom: 20px;
-      > span {
-        font-size: 24px;
-        vertical-align: bottom;
-      }
-    }
-    .content {
-      text-indent: 2em;
-      padding-left: 20%;
-      padding-right: 20%;
-      margin-bottom: 15px;
-      overflow: hidden;
-      .tips {
-        color: rgb(163, 164, 165);
-        font-size: 14px;
-        padding-bottom: 10px;
-        padding-left: 5px;
-      }
-    }
-    .chart {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px 0;
-      .chartRadar {
-        height: 500px;
-        width: 60%;
-      }
-      .chartPie {
-        height: 500px;
-        width: 65%;
-      }
-      .chartRadar2 {
-        height: 500px;
-        width: 60%;
-      }
-      .chartbar {
-        height: 400px;
-        width: 70%;
-      }
-      .chartbar2 {
-        height: 500px;
-        width: 75%;
-      }
-      .chartbar3 {
-        height: 500px;
-        width: 80%;
-      }
-      .chartbar4 {
-        height: 500px;
-        width: 80%;
-      }
-    }
+.chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  .chartRadar {
+    height: 500px;
+    width: 60%;
   }
-  .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 20px;
+  .chartPie {
+    height: 500px;
+    width: 65%;
+  }
+  .chartRadar2 {
+    height: 500px;
+    width: 60%;
+  }
+  .chartbar {
+    height: 400px;
+    width: 70%;
+  }
+  .chartbar2 {
+    height: 500px;
+    width: 75%;
+  }
+  .chartbar3 {
+    height: 500px;
+    width: 80%;
+  }
+  .chartbar4 {
+    height: 500px;
+    width: 80%;
   }
 }
 </style>

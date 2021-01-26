@@ -20,52 +20,66 @@
         </svg>
         <span>数据分析报告</span>
       </div>
-      <div class="content">
-        <h3>1学习现状描述</h3>
-        <div>
-          该饼图分析了当前学院下学生最近的学习状况描述，通过学习获得的满足感,学习兴趣,求知欲和课堂与老师的互动等这些角度,符合为同意,不符合为不同意,概况描述了学生最近的学习状况。
+      <div class="part">
+        <div class="content">
+          <h3>1学习现状描述</h3>
+          <div>
+            该饼图分析了当前学院下学生最近的学习状况描述，通过学习获得的满足感,学习兴趣,求知欲和课堂与老师的互动等这些角度，分为同意，较为同意，不太同意，不同意四个程度,描述了学生最近的学习状况。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
         </div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
-      </div>
-      <div class="chart">
-        <chart-show :id="'main'" :data="option" class="chartPie"></chart-show>
-      </div>
-      <div class="content">
-        <h3>2课前课后学习情况</h3>
-        <div>
-          该极坐标系柱状图分析了当前学院下各专业学生在课前、课上、课后的学习情况，该轴指数越高,说明该轴对应的学习情况越好。所有专业学生的数据堆叠显示,能够直观显示整个学院学生情况,也可以选择不同专业的数据,进行单独分析。
+        <div class="chart">
+          <chart-show :id="'main'" :data="option" class="chartPie"></chart-show>
         </div>
       </div>
-      <div class="chart">
-        <chart-show
-          :id="'main2'"
-          :data="option2"
-          class="chartPolar"
-        ></chart-show>
-      </div>
-      <div class="content">
-        <h3>3课外安排</h3>
-        <div>
-          该条形图分析了学院下学生在课外的学习时间安排情况，条形图中某一轴长度越长，说明该轴所对应课外学习安排学生参与的越多的。
+      <div class="part">
+        <div class="content">
+          <h3>2课前课后学习情况</h3>
+          <div>
+            该极坐标系柱状图分析了当前学院下各专业学生在课前、课上、课后的学习情况，该轴指数越高,说明该轴对应的学习情况越好。所有专业学生的数据堆叠显示,能够直观显示整个学院学生情况,也可以选择不同专业的数据,进行单独分析。
+          </div>
+          <major-search
+            url="analysis/analysis13"
+            Qnumber="Q13"
+            :optionData.sync="option2"
+            Type="polar"
+          ></major-search>
         </div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
-      </div>
-      <div class="chart">
-        <chart-show :id="'main3'" :data="option3" class="bar"></chart-show>
-      </div>
-      <div class="content">
-        <h3>4学习问题</h3>
-        <div>
-          该条形图分析了学院下学生在学习方面遇到主要问题，条形图中某一轴长度越长，说明该轴所对应的问题学生遇到的越多，学校方面需要重视这一块内容的改善。
+        <div class="chart">
+          <chart-show
+            :id="'main2'"
+            :data="option2"
+            class="chartPolar"
+          ></chart-show>
         </div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
       </div>
-      <div class="chart">
-        <chart-show
-          :id="'main4'"
-          :data="option4"
-          class="barMultiple"
-        ></chart-show>
+      <div class="part">
+        <div class="content">
+          <h3>3课外安排</h3>
+          <div>
+            该条形图分析了学院下学生在课外的学习时间安排情况，条形图中某一轴长度越长，说明该轴所对应课外学习安排学生参与的越多的。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        </div>
+        <div class="chart">
+          <chart-show :id="'main3'" :data="option3" class="bar"></chart-show>
+        </div>
+      </div>
+      <div class="part">
+        <div class="content">
+          <h3>4学习问题</h3>
+          <div>
+            该条形图分析了学院下学生在学习方面遇到主要问题，条形图中某一轴长度越长，说明该轴所对应的问题学生遇到的越多，学校方面需要重视这一块内容的改善。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main4'"
+            :data="option4"
+            class="barMultiple"
+          ></chart-show>
+        </div>
       </div>
     </div>
 
@@ -83,6 +97,7 @@
 <script>
 var echarts = require("echarts");
 import chartShow from "@/components/chartShow";
+import majorSearch from "@/components/Search";
 import { animate } from "@/utils/index";
 const _this = this;
 export default {
@@ -91,6 +106,14 @@ export default {
       {
         name: "同意",
         value: 70,
+      },
+      {
+        name: "较为同意",
+        value: 50,
+      },
+      {
+        name: "不太同意",
+        value: 40,
       },
       {
         name: "不同意",
@@ -108,7 +131,7 @@ export default {
             text: "学习现状",
           },
           {
-            subtext: "学习能够让我获得强烈的满足感",
+            subtext: "学习能够让我获得满足感",
             left: "16.67%",
             top: "75%",
             textAlign: "center",
@@ -117,7 +140,7 @@ export default {
             },
           },
           {
-            subtext: "我对所学的内容充满好奇，具有充足的学习兴趣",
+            subtext: "我对所学的内容具有学习兴趣",
             left: "50%",
             top: "75%",
             textAlign: "center",
@@ -126,7 +149,7 @@ export default {
             },
           },
           {
-            subtext: "我上课时经常有很多问题想要向老师提问",
+            subtext: "会在课堂上向老师提问",
             left: "83.33%",
             top: "75%",
             textAlign: "center",
@@ -193,7 +216,7 @@ export default {
             bottom: 0,
           },
         ],
-        color: ["#2f4554", "#61a0a8"],
+        color: ["#2f4554", "#61a0a8", "#d48265", "#91c7ae"],
       },
       option2: {
         angleAxis: {
@@ -336,7 +359,7 @@ export default {
     },
     //Q13-15
     async getAnalysisData13() {
-      const { data: res2 } = await this.$get("analysis/analysis13");
+      const { data: res2 } = await this.$get("analysis/analysis13Default");
       console.log(res2);
       this.option2.series[0].data = res2.sumQ13Wlw;
       this.option2.series[1].data = res2.sumQ13TX;
@@ -365,67 +388,34 @@ export default {
   },
   components: {
     chartShow,
+    majorSearch,
   },
 };
 </script>
 
-<style lang="less" >
-.chart1Mode {
-  padding: 10px;
-  .body {
-    overflow: hidden;
-    .topic {
-      text-align: center;
-      margin-bottom: 20px;
-      > span {
-        font-size: 24px;
-        vertical-align: bottom;
-      }
-    }
-    .content {
-      text-indent: 2em;
-      padding-left: 20%;
-      padding-right: 20%;
-      margin-bottom: 15px;
-      overflow: hidden;
-      .tips {
-        color: rgb(163, 164, 165);
-        font-size: 14px;
-        padding-bottom: 10px;
-        padding-left: 5px;
-      }
-    }
-    .chart {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px 0;
-      .chartPie {
-        height: 500px;
-        width: 80% !important;
-        // box-sizing: border-box;
-        // border: black 1px solid;
-      }
-      .chartPolar {
-        height: 500px;
-        width: 60%;
-      }
-      .bar {
-        height: 500px;
-        width: 50%;
-      }
-      .barMultiple {
-        height: 500px;
-        width: 90% !important;
-      }
-    }
+<style lang="less" scoped>
+.chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  .chartPie {
+    height: 500px;
+    width: 80% !important;
+    // box-sizing: border-box;
+    // border: black 1px solid;
   }
-  .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 20px;
+  .chartPolar {
+    height: 500px;
+    width: 60%;
+  }
+  .bar {
+    height: 500px;
+    width: 50%;
+  }
+  .barMultiple {
+    height: 500px;
+    width: 90% !important;
   }
 }
 </style>

@@ -30,6 +30,9 @@ Vue.prototype.$Qs = Qs
 // 挂载ElementUI
 Vue.use(ElementUI)
 Vue.use(htmlToPdf)
+/* 解释：HTML规定可以为元素添加非标准的属性，但要添加前缀data-
+访问：添加自定义属性之后，可以通过元素的dataset属性来访问自定义的值。
+ */
 Vue.directive('title', {
   inserted: function (el, bingding) {
     document.title = el.dataset.title

@@ -64,7 +64,7 @@ export default {
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
         title: {
-          text: "最近一周内有效样本数增长情况",
+          text: "最近一周内样本数增长情况",
           // subtext: "副标题",
           textStyle: {
             fontWeight: "normal",

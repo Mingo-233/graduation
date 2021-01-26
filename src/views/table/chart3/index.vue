@@ -20,108 +20,143 @@
         </svg>
         <span>数据分析报告</span>
       </div>
-      <div class="content">
-        <h3>1课程教学内容</h3>
-        <div>
-          分析了当前学院下不同专业课程教学内容蕴含的教学特点。可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该课程设计质量越好。
+      <div class="part">
+        <div class="content">
+          <h3>1课程教学内容</h3>
+          <div>
+            分析了当前学院下不同专业课程教学内容蕴含的教学特点。可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该课程设计质量越好。
+          </div>
+          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+          <major-search
+            url="analysis/analysisRadarForm3"
+            Qnumber="Q21"
+            :optionData.sync="option"
+          ></major-search>
         </div>
-        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
-      </div>
-      <div class="chart">
-        <chart-show :id="'main'" :data="option" class="chartRadar"></chart-show>
-      </div>
-      <div class="content">
-        <h3>2专业课程的难度</h3>
-        <div>
-          分析了学生认为的专业课程的难度情况，通过课程内容、课程要求、课程作业等角度，符合为同意,不符合为不同意。
+        <div class="chart">
+          <chart-show
+            :id="'main'"
+            :data="option"
+            class="chartRadar"
+          ></chart-show>
         </div>
       </div>
-      <div class="chart">
-        <chart-show :id="'main2'" :data="option2" class="chartPie"></chart-show>
-      </div>
-      <div class="content">
-        <h3>3教师教学</h3>
-        <div>
-          分析了大学期间任课教师的教学行为，可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该方面教师教学质量越好。
+      <div class="part">
+        <div class="content">
+          <h3>2专业课程的难度</h3>
+          <div>
+            分析了学生认为的专业课程的难度情况，通过课程内容、课程要求、课程作业等角度，分为同意，较为同意，不太同意，不同意四个程度。
+          </div>
         </div>
-        <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
-      </div>
-      <div class="chart">
-        <chart-show
-          :id="'main3'"
-          :data="option3"
-          class="chartRadar2"
-        ></chart-show>
-      </div>
-      <div class="content">
-        <h3>4院校组织的实习实践</h3>
-        <div>
-          分析了院校组织的实习实践的效果，条形图中某一轴长度越长，说明该轴所对应实习实践的效果好，满分为100。
+        <div class="chart">
+          <chart-show
+            :id="'main2'"
+            :data="option2"
+            class="chartPie"
+          ></chart-show>
         </div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
       </div>
-      <div class="chart">
-        <chart-show :id="'main4'" :data="option4" class="chartbar"></chart-show>
-      </div>
-      <div class="content">
-        <h3>5与任课教师交流</h3>
-        <div>
-          分析了大学期间学生任课教师交流情况，条形图中某一轴长度越长，说明学生在该方面内容与任课老师交流越多。
+      <div class="part">
+        <div class="content">
+          <h3>3教师教学</h3>
+          <div>
+            分析了大学期间任课教师的教学行为，可以通过选择不同专业来进行横向比较，雷达图中某一轴覆盖面积越大，说明该方面教师教学质量越好。
+          </div>
+          <span class="tips">注：平均指数为该院校下所有专业的平均分数</span>
+          <major-search
+            url="analysis/analysisRadarForm3"
+            Qnumber="Q23"
+            :optionData.sync="option3"
+          ></major-search>
         </div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
-      </div>
-      <div class="chart">
-        <chart-show
-          :id="'main5'"
-          :data="option5"
-          class="chartbar2"
-        ></chart-show>
-      </div>
-      <div class="content">
-        <h3>6学业指导服务</h3>
-        <div>
-          分析了大学期间学生接受过本校提供的学业指导服务，学生在需学业指导方面的参与程度。参与程度较高的服务，学校应继续提供稳定有效的指导服务，参与程度较低的服务，学校应该在其方面进行改善。
+        <div class="chart">
+          <chart-show
+            :id="'main3'"
+            :data="option3"
+            class="chartRadar2"
+          ></chart-show>
         </div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
       </div>
-      <div class="chart">
-        <chart-show
-          :id="'main6'"
-          :data="option6"
-          class="chartbar3"
-        ></chart-show>
-      </div>
-      <div class="content">
-        <h3>7实习实践</h3>
-        <div>
-          分析了院校的实习实践应该改进的方面，以下均为学生不满意的地方，需要校验审查真实性，并进行整改。
+      <div class="part">
+        <div class="content">
+          <h3>4院校组织的实习实践</h3>
+          <div>
+            分析了院校组织的实习实践的效果，条形图中某一轴长度越长，说明该轴所对应实习实践的效果好，满分为100。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
         </div>
-        <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        <div class="chart">
+          <chart-show
+            :id="'main4'"
+            :data="option4"
+            class="chartbar"
+          ></chart-show>
+        </div>
       </div>
-      <div class="chart">
-        <chart-show
-          :id="'main7'"
-          :data="option7"
-          class="chartbar4"
-        ></chart-show>
+      <div class="part">
+        <div class="content">
+          <h3>5与任课教师交流</h3>
+          <div>
+            分析了大学期间学生任课教师交流情况，条形图中某一轴长度越长，说明学生在该方面内容与任课老师交流越多。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main5'"
+            :data="option5"
+            class="chartbar2"
+          ></chart-show>
+        </div>
       </div>
-    </div>
+      <div class="part">
+        <div class="content">
+          <h3>6学业指导服务</h3>
+          <div>
+            分析了大学期间学生接受过本校提供的学业指导服务，学生在需学业指导方面的参与程度。参与程度较高的服务，学校应继续提供稳定有效的指导服务，参与程度较低的服务，学校应该在其方面进行改善。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main6'"
+            :data="option6"
+            class="chartbar3"
+          ></chart-show>
+        </div>
+      </div>
+      <div class="part">
+        <div class="content">
+          <h3>7实习实践</h3>
+          <div>
+            分析了院校的实习实践应该改进的方面，以下均为学生不满意的地方，需要校验审查真实性，并进行整改。
+          </div>
+          <!-- <span class="tips">注：平均指数为该院校下所有专业的平均分数</span> -->
+        </div>
+        <div class="chart">
+          <chart-show
+            :id="'main7'"
+            :data="option7"
+            class="chartbar4"
+          ></chart-show>
+        </div>
+      </div>
 
-    <div class="footer">
-      <el-button type="primary round plain" @click="backTop()"
-        >回到顶部
-      </el-button>
-      <el-button type="primary round plain" @click="getPdf()"
-        >保存本地</el-button
-      >
+      <div class="footer">
+        <el-button type="primary round plain" @click="backTop()"
+          >回到顶部
+        </el-button>
+        <el-button type="primary round plain" @click="getPdf()"
+          >保存本地</el-button
+        >
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-var echarts = require("echarts");
 import chartShow from "@/components/chartShow";
-import { animate } from "@/utils/index";
+import majorSearch from "@/components/Search";
 const _this = this;
 export default {
   data() {
@@ -129,6 +164,14 @@ export default {
       {
         name: "同意",
         value: 70,
+      },
+      {
+        name: "较为同意",
+        value: 50,
+      },
+      {
+        name: "不太同意",
+        value: 40,
       },
       {
         name: "不同意",
@@ -321,7 +364,7 @@ export default {
             bottom: 0,
           },
         ],
-        color: ["#2f4554", "#61a0a8"],
+        color: ["#2f4554", "#61a0a8", "#d48265", "#91c7ae"],
       },
       option3: {
         title: {
@@ -579,7 +622,7 @@ export default {
     },
     // Q21
     async getAnalysisData21() {
-      const { data: res1 } = await this.$get("analysis/analysis21");
+      const { data: res1 } = await this.$get("analysis/analysis21Default");
       this.option.series[0].data[0].value = res1.sumQ21;
       this.option.series[0].data[1].value = res1.sumQ21Wlw;
       this.option.series[0].data[2].value = res1.sumQ21Tx;
@@ -596,7 +639,7 @@ export default {
     },
     // Q23
     async getAnalysisData23() {
-      const { data: res3 } = await this.$get("analysis/analysis23");
+      const { data: res3 } = await this.$get("analysis/analysis23Default");
       this.option3.series[0].data[0].value = res3.sumQ23;
       this.option3.series[0].data[1].value = res3.sumQ23Wlw;
       this.option3.series[0].data[2].value = res3.sumQ23Tx;
@@ -633,77 +676,44 @@ export default {
   },
   components: {
     chartShow,
+    majorSearch,
   },
 };
 </script>
 
 <style lang="less" >
-.chart1Mode {
-  padding: 10px;
-  .body {
-    overflow: hidden;
-    .topic {
-      text-align: center;
-      margin-bottom: 20px;
-      > span {
-        font-size: 24px;
-        vertical-align: bottom;
-      }
-    }
-    .content {
-      text-indent: 2em;
-      padding-left: 20%;
-      padding-right: 20%;
-      margin-bottom: 15px;
-      overflow: hidden;
-      .tips {
-        color: rgb(163, 164, 165);
-        font-size: 14px;
-        padding-bottom: 10px;
-        padding-left: 5px;
-      }
-    }
-    .chart {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px 0;
-      .chartRadar {
-        height: 500px;
-        width: 60%;
-      }
-      .chartPie {
-        height: 500px;
-        width: 65%;
-      }
-      .chartRadar2 {
-        height: 500px;
-        width: 60%;
-      }
-      .chartbar {
-        height: 400px;
-        width: 70%;
-      }
-      .chartbar2 {
-        height: 500px;
-        width: 70%;
-      }
-      .chartbar3 {
-        height: 500px;
-        width: 80%;
-      }
-      .chartbar4 {
-        height: 500px;
-        width: 80%;
-      }
-    }
+.chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  .chartRadar {
+    height: 500px;
+    width: 60%;
   }
-  .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 20px;
+  .chartPie {
+    height: 500px;
+    width: 65%;
+  }
+  .chartRadar2 {
+    height: 500px;
+    width: 60%;
+  }
+  .chartbar {
+    height: 400px;
+    width: 70%;
+  }
+  .chartbar2 {
+    height: 500px;
+    width: 70%;
+  }
+  .chartbar3 {
+    height: 500px;
+    width: 80%;
+  }
+  .chartbar4 {
+    height: 500px;
+    width: 80%;
   }
 }
 </style>
