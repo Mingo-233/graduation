@@ -14,7 +14,7 @@ server.interceptors.request.use(
     config => {
         if (store.getters.token) {
             config.headers['Key'] = getToken() //让每个请求携带自定义token
-            console.log(config);
+            // console.log(config);
         }
         return config
     },
@@ -28,6 +28,7 @@ server.interceptors.request.use(
 server.interceptors.response.use(
     response => {
         const res = response.data
+        console.log(res);
         if (res.Status === 1) {
             Message({
                 message: res.Message,
@@ -58,7 +59,6 @@ server.interceptors.response.use(
         }
         else {
             return response
-
         }
     },
     error => {

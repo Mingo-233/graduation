@@ -1,4 +1,7 @@
+'use strict'
 const path = require('path')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 function resolve(dir) {
     return path.join(__dirname, dir)
 }
@@ -29,7 +32,56 @@ module.exports = {
     crossorigin: '',
     // 在生成的 HTML 中的 <link rel="stylesheet"> 和 <script> 标签上启用 Subresource Integrity (SRI)
     integrity: false,
+    configureWebpack: config => {
+        const plugins = []
+        // 后端未开启.gz访问，暂时注释，需要可开启
+        // const CompressionWebpackPlugin = require('compression-webpack-plugin')
+        // plugins.push(
+        //   new CompressionWebpackPlugin({
+        //     filename: "[path].gz[query]",
+        //     algorithm: "gzip",
+        //     test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"), //匹配文件名
+        //     threshold: 10240, //对10K以上的数据进行压缩
+        //     minRatio: 0.8,
+        //     deleteOriginalAssets: false //是否删除源文件
+        //   })
+        // )
+        plugins.push(
+            new htmlWebpackPlugin({
+                hash: true,
+                minify: { // 压缩HTML文件
+                    removeComments: true, // 移除HTML中的注释
+                    collapseWhitespace: true, // 删除空白符与换行符
+                    minifyCSS: true// 压缩内联css
+                },
+                // favicon: './public/favicon.ico',
+                // title: process.env.VUE_APP_BASE_NAME,
+                filename: 'index.html',
+                template: process.env.NODE_ENV === 'production' ? './public/index.prod.html' : './public/index.dev.html',
+                inject: true
+            })
+        )
+        if (process.env.NODE_ENV === 'production') {
+            config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true // 正式环境下删除console
+            config.externals = {
+                'vue': 'Vue',
+                'vuex': 'Vuex',
+                'vue-router': 'VueRouter',
+                'axios': 'axios',
+                'element-ui': 'ELEMENT'
+            }
+        }
+        // config.devtool = 'source-map'
+        config.plugins = [...config.plugins, ...plugins]
+        // config.entry.app = ['babel-polyfill', './src/main.js'];
+    },
     chainWebpack: config => {
+        // if (process.env.NODE_ENV === 'production') {
+        //     config
+        //         .plugin('webpack-bundle-analyzer')
+        //         .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+        //     config.plugin("loadshReplace").use(new LodashModuleReplacementPlugin());
+        // }
         config.resolve.alias
             .set("@", resolve('src'))
         config.module

@@ -66,6 +66,7 @@ export default {
     },
     logout() {
       this.$store.dispatch("FedLogOut").then(() => {
+        this.$router.push("/welcome");
         location.reload(); // 为了重新实例化vue-router对象 避免bug
       });
     },

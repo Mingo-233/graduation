@@ -256,7 +256,7 @@
                 label="浙江省大学生网络与信息安全竞赛"
                 name="type"
               ></el-checkbox>
-              <el-checkbox label="以上均没有" name="type"></el-checkbox>
+              <el-checkbox label="其他" name="type"></el-checkbox>
             </el-checkbox-group>
           </el-form-item>
           <el-form-item

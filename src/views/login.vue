@@ -68,8 +68,10 @@ export default {
       redirect: undefined,
       loading: false,
       loginForm: {
-        username: "Admin",
-        password: "qwer",
+        // username: "Admin",
+        // password: "qwer",
+        username: "",
+        password: "",
       },
       show: false,
       isLogin: true,
@@ -102,14 +104,22 @@ export default {
             .dispatch("Login", this.loginForm)
             .then((res) => {
               console.log(res);
-              this.$message({
-                message: res.data.msg,
-                type: "success",
-              });
+              if (res.data.status === 1) {
+                this.$message({
+                  message: res.data.msg,
+                  type: "success",
+                });
+              } else {
+                this.$message({
+                  message: res.data.msg,
+                  type: "warning",
+                });
+                throw new Error("登录账号出错");
+              }
               console.log(this.redirect);
               this.$router.push({ path: this.redirect || "/" });
             })
-            .catch(() => {
+            .catch((e) => {
               this.isLogin = true;
               this.loading = false;
             });

@@ -15,7 +15,7 @@
       border
       style="width: 100%"
     >
-      <el-table-column type="index" label="#" width="30px"></el-table-column>
+      <el-table-column type="index" label="#" width="50px"></el-table-column>
       <el-table-column prop="sex" label="性别" width="50px"> </el-table-column>
       <el-table-column prop="age" label="年龄" width="50px"> </el-table-column>
       <el-table-column prop="grade" label="年级" width="50px">
@@ -53,7 +53,7 @@
   </div>
 </template>
 <script>
-// import "./icon";
+import { getInfos } from "@/utils/auth";
 export default {
   data() {
     return {
@@ -141,11 +141,22 @@ export default {
         const property = column["property"];
         return row[property] === value;
       },
+      roles: [
+        { role: "Admin", college: "All" },
+        { role: "XZadmin", college: "信息与智能工程学院" },
+        { role: "WCadmin", college: "文化与传播学院" },
+      ],
     };
   },
   methods: {
     async getBasicsData() {
-      const { data: res } = await this.$get("analysis/analysis0");
+      let currentRole = JSON.parse(getInfos()).role;
+      console.log(currentRole);
+      let currentfilter = this.roles.filter((item) => {
+        return item.role === currentRole;
+      });
+      const params = { college: currentfilter[0].college };
+      const { data: res } = await this.$get("analysis/analysis0", params);
       console.log(res);
       this.tableData = res;
     },

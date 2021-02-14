@@ -163,6 +163,15 @@
               <el-checkbox label="与校外专业人士交流" name="type"></el-checkbox>
             </el-checkbox-group>
           </el-form-item>
+          <el-form-item prop="careerPlan" label="职业生涯规划">
+            <el-radio-group v-model="Form.careerPlan">
+              <el-radio label="国内考研" value="国内考研" border></el-radio>
+              <el-radio label="国际升学" value="国际升学" border></el-radio>
+              <el-radio label="考公务员" value="考公务员" border></el-radio>
+              <el-radio label="就业" value="就业" border></el-radio>
+              <el-radio label="自主创业" value="自主创业" border></el-radio>
+            </el-radio-group>
+          </el-form-item>
           <div class="btn">
             <el-button el-button type="primary" @click="save" class="submit"
               >提交</el-button
@@ -272,6 +281,15 @@ export default {
       isRecord: false,
       //是否点击过一次恢复按钮
       btnFlag: false,
+      rules: {
+        careerPlan: [
+          {
+            required: true,
+            message: "职业生涯规划还未填写",
+            trigger: "change",
+          },
+        ],
+      },
     };
   },
   mounted() {

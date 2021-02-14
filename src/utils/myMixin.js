@@ -26,6 +26,7 @@ export const myMixin = {
                 profession: [
                     { required: true, message: "您还有未选择的选项", trigger: "change" },
                 ],
+
             },
             // 进度条
             percentage: 0,

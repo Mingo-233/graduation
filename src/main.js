@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 import ElementUI from 'element-ui'
+// if (process.env.NODE_ENV === 'development') {
+//   require('element-ui/lib/theme-chalk/index.css')
+// }
+
 import 'element-ui/lib/theme-chalk/index.css'
 // 导入全局样式表
 // import './assets/css/global.css'
