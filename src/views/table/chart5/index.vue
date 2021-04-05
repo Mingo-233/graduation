@@ -171,7 +171,7 @@ export default {
         },
         legend: {
           left: "center",
-          top: 10,
+          top: 50,
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
             通信工程: false,
@@ -195,7 +195,7 @@ export default {
               { name: "自习教室的数量", max: 4, color: "rgb(194,53,49)" },
               { name: "文娱体育设施", max: 4, color: "rgb(194,53,49)" },
             ],
-            center: ["50%", "50%"],
+            center: ["50%", "60%"],
             radius: 150,
           },
         ],
@@ -239,7 +239,7 @@ export default {
         },
         legend: {
           left: "center",
-          top: 10,
+          top: 50,
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
             通信工程: false,
@@ -254,7 +254,7 @@ export default {
               { name: "就业指导", max: 4, color: "rgb(194,53,49)" },
               { name: "心理健康教育", max: 4, color: "rgb(194,53,49)" },
             ],
-            center: ["50%", "50%"],
+            center: ["50%", "60%"],
             radius: 150,
           },
         ],
@@ -298,7 +298,7 @@ export default {
         },
         legend: {
           left: "center",
-          top: 10,
+          top: 50,
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
             通信工程: false,
@@ -313,7 +313,7 @@ export default {
               { name: "学生资助", max: 4, color: "rgb(194,53,49)" },
               { name: "奖励/处分/申诉", max: 4, color: "rgb(194,53,49)" },
             ],
-            center: ["50%", "50%"],
+            center: ["50%", "60%"],
             radius: 150,
             shape: "circle",
           },
@@ -358,7 +358,7 @@ export default {
         },
         legend: {
           left: "center",
-          top: 10,
+          top: 50,
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
             通信工程: false,
@@ -381,7 +381,7 @@ export default {
                 color: "rgb(194,53,49)",
               },
             ],
-            center: ["50%", "50%"],
+            center: ["50%", "60%"],
             radius: 150,
             shape: "circle",
           },

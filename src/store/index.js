@@ -16,11 +16,11 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
     // console.log(modulesFiles);
     const value = modulesFiles(modulePath)
     //这个value就是我们需要的其中一个模块了
-    // console.log(value);
+    //console.log(value);
     //因为我们这个模块导出时使用的export default  所以他会有一个default的属性，里面的内容就是我们导出的内容
     //每一个导出的内容 变成了modules的一个属性，最后把modeles整个返回作为reduce累加器的范围值   
     modules[moduleName] = value.default
-    //console.log(modules);
+    // console.log(modules);
     return modules
 }, {})
 const Store = new Vuex.Store({
@@ -32,5 +32,5 @@ const Store = new Vuex.Store({
 
     // }
 })
-
+console.log(Store);
 export default Store

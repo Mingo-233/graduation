@@ -1,10 +1,5 @@
 <template>
   <div class="app-wrapper" :class="classObj">
-    <!-- <div
-      v-if="device === 'mobile' && sidebar.opened"
-      class="drawer-bg"
-      @click="handleClickOutside"
-    /> -->
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <div ref="navbar">
@@ -96,9 +91,6 @@ export default {
       this.contentHeight =
         document.documentElement.clientHeight - (navbarHeight + footerHeight);
       this.$store.dispatch("heightAuto", this.contentHeight);
-    },
-    handleClickOutside() {
-      this.$store.dispatch("CloseSideBar", { withoutAnimation: false });
     },
   },
 };

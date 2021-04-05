@@ -23,6 +23,7 @@ export default {
     }
   },
   methods: {
+    //当 当前视口宽度-3 小于1024时 
     isMobile() {
       const rect = body.getBoundingClientRect()
       return rect.width - RATIO < WIDTH
@@ -31,7 +32,6 @@ export default {
       if (!document.hidden) {
         const isMobile = this.isMobile()
         store.dispatch('ToggleDevice', isMobile ? 'mobile' : 'desktop')
-
         if (isMobile) {
           store.dispatch('CloseSideBar', { withoutAnimation: true })
         }

@@ -193,7 +193,7 @@ export default {
         },
         legend: {
           left: "center",
-          top: 10,
+          top: 50,
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
             通信工程: false,
@@ -239,7 +239,7 @@ export default {
                 color: "rgb(194,53,49)",
               },
             ],
-            center: ["50%", "50%"],
+            center: ["50%", "60%"],
             radius: 150,
           },
         ],
@@ -279,7 +279,7 @@ export default {
             text: "专业课程难度",
           },
           {
-            subtext: "对于课程内容，我经常感到难以理解",
+            subtext: "对课程内容常常感到较难理解",
             left: "16.67%",
             top: "75%",
             textAlign: "center",
@@ -297,7 +297,7 @@ export default {
             },
           },
           {
-            subtext: "我在课外花很多时间来完成老师布置的作业",
+            subtext: "在课外花很多时间来完成作业",
             left: "83.33%",
             top: "75%",
             textAlign: "center",
@@ -378,7 +378,7 @@ export default {
         },
         legend: {
           left: "center",
-          top: 10,
+          top: 50,
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
             通信工程: false,
@@ -429,7 +429,7 @@ export default {
                 color: "rgb(194,53,49)",
               },
             ],
-            center: ["50%", "50%"],
+            center: ["50%", "60%"],
             radius: 150,
           },
         ],

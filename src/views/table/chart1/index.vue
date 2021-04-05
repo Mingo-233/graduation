@@ -98,7 +98,7 @@ export default {
         },
         legend: {
           left: "center",
-          top: 10,
+          top: 50,
           data: ["平均指数", "物联网工程", "通信工程", "机械电子工程"],
           selected: {
             通信工程: false,
@@ -114,7 +114,7 @@ export default {
               { name: "专业职业素养要求", max: 3, color: "rgb(194,53,49)" },
               { name: "专业的课程设置", max: 3, color: "rgb(194,53,49)" },
             ],
-            center: ["50%", "50%"],
+            center: ["50%", "60%"],
             radius: 150,
           },
         ],
