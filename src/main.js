@@ -42,8 +42,14 @@ Vue.directive('title', {
     document.title = el.dataset.title
   }
 })
+// new Vue({
+//   router,
+//   store,
+//   render: h => h(App)
+// }).$mount('#app')
 new Vue({
+  el:'#app',
   router,
   store,
-  render: h => h(App)
-}).$mount('#app')
+  render: h => h(App),
+})

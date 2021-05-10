@@ -125,7 +125,6 @@ export default {
         this.optionData.series = settingOption;
         //重置echart图表选择呈现数据
         this.optionData.legend.selected = {};
-        this.$emit("update:optionData", this.optionData);
       }
       //雷达图
       else if (this.Type === "radar") {

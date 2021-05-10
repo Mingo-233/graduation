@@ -41,7 +41,7 @@
           <major-search
             url="analysis/analysis13"
             Qnumber="Q13"
-            :optionData.sync="option2"
+            :optionData="option2"
             Type="polar"
           ></major-search>
         </div>

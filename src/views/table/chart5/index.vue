@@ -31,7 +31,7 @@
           <major-search
             url="analysis/analysisRadarForm5"
             Qnumber="Q36"
-            :optionData.sync="option"
+            :optionData="option"
           ></major-search>
         </div>
         <div class="chart">
@@ -49,7 +49,7 @@
           <major-search
             url="analysis/analysisRadarForm5"
             Qnumber="Q37"
-            :optionData.sync="option2"
+            :optionData="option2"
           ></major-search>
         </div>
         <div class="chart">
@@ -67,7 +67,7 @@
           <major-search
             url="analysis/analysisRadarForm5"
             Qnumber="Q38"
-            :optionData.sync="option3"
+            :optionData="option3"
           ></major-search>
         </div>
         <div class="chart">
@@ -85,7 +85,7 @@
           <major-search
             url="analysis/analysisRadarForm5"
             Qnumber="Q39"
-            :optionData.sync="option4"
+            :optionData="option4"
           ></major-search>
         </div>
         <div class="chart">

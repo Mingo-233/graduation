@@ -30,7 +30,7 @@
           <major-search
             url="analysis/analysisRadarForm4"
             Qnumber="Q30"
-            :optionData.sync="option"
+            :optionData="option"
           ></major-search>
         </div>
         <div class="chart">

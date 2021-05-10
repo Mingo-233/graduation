@@ -30,7 +30,7 @@
           <major-search
             url="analysis/analysis1"
             Qnumber="Q9"
-            :optionData.sync="option"
+            :optionData="option"
           ></major-search>
         </div>
         <div class="chart">
@@ -59,7 +59,7 @@
             url="analysis/analysis2"
             Qnumber="Q10"
             Type="bar"
-            :optionData.sync="option3"
+            :optionData="option3"
           ></major-search>
         </div>
         <div class="chart">
